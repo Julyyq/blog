@@ -1,7 +1,3 @@
----
-layout: default
-title: JavaScript操作cookie
----
 JavaScript操作cookie
 -------------------
 ### 1. cookie是什么？
