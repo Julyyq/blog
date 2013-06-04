@@ -16,41 +16,12 @@
     <div class="wrapper">
       <header>
         <h1>July的blog</h1>
-        <p>别文艺了，认真写代码吧！</p>
 
         <p class="view"><a href="https://github.com/Julyyq/blog">View the Project on GitHub <small>Julyyq/blog</small></a></p>
 
       </header>
       <section>
-        <h2>
-          <a name="javascriptcookie" class="anchor" href="#javascriptcookie"><span class="octicon octicon-link"></span></a>JavaScript操作cookie</h2>
-          
-          <h3>
-          <a name="1-cookie" class="anchor" href="#1-cookie"><span class="octicon octicon-link"></span></a>1. cookie是什么？</h3>
-          
-          <p>指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。<a href="http://zh.wikipedia.org/wiki/Cookie">http://zh.wikipedia.org/wiki/Cookie</a></p>
-          
-          <pre>
-            <code>
-function setCookie(name, value, expires) {
-  var expiresDate = new Date().getDate() + expires;
-  document.cookie = name + "=" + value + ";expires=" + expiresDate;
-}
-function getCookie(name) {
-  var arr = document.cookie.split(";"),i;
-  for(i=0;i&lt;arr.length;i++) {
-    var arr2=arr[i].split("=");
-    if(arr2[0]===name) return arr2[1];
-  }
-  return "";
-}
-function removeCookie(name) {
-  setCookie(name, "", -1);
-}
-            </code>
-          </pre>
-          
-          <p>未完成</p>
+        {% include _posts/2012-08-25-use_JavaScript_operate_cookie.md %}
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/Julyyq">Julyyq</a></p>

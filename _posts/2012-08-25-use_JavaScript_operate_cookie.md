@@ -5,8 +5,7 @@ title: JavaScript操作cookie
 JavaScript操作cookie
 -------------------
 ### 1. cookie是什么？
->Cookie（复数形态Cookies），中文名称为小型文本文件或小甜饼，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。
-<http://zh.wikipedia.org/wiki/Cookie>
+>Cookie（复数形态Cookies），中文名称为小型文本文件或小甜饼，指某些网站为了辨别用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。<http://zh.wikipedia.org/wiki/Cookie>
 
     function setCookie(name, value, expires) {
       var expiresDate = new Date().getDate() + expires;
