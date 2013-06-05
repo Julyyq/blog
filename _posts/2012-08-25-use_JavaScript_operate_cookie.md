@@ -13,7 +13,7 @@ http本身是无状态的，也就是说，每个页面都是“独立”存在�
 
 ### 2. cookie真面目
 我们打开京东官网，然后调出调试工具，在控制台里面输入document.cookie，结果看到以下内容：
-![京东网站首页cookie](/images/cookie_of_jd.png)
+![京东网站首页cookie](../images/cookie_of_jd.png)
 
     function setCookie(name, value, expires) {
       var expiresDate = new Date().getDate() + expires;
