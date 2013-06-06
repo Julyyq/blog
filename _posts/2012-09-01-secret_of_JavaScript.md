@@ -31,7 +31,7 @@ title: JavaScript循环中的引用
       console.log(3);
     }
     a[4].onclick = function() {
-      console.log(4;
+      console.log(4);
     }
 
 这样做感觉比较蠢是吧？然后想到这不是非常符合用for循环吗？OK，我们来试试。
