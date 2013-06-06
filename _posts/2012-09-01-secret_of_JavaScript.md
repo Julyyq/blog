@@ -2,7 +2,7 @@
 layout: default
 title: JavaScript循环中的引用
 ---
-# Case 1
+# JavaScript循环中的引用
 
 假如有如下一段html：
 
