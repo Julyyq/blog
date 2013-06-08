@@ -54,6 +54,9 @@ Http header简单介绍
 
 5. pragma：兼容http1.0协议的缓存设置，http1.1中应由Cache-Control替代。
 
-6. P3P: 全称为:Platform for Privacy Preferences Project。大多数浏览器对这个参数没有很好的支持,这个参数用来表达网站自己的隐私惯例。具体可以参考：<http://www.w3.org/P3P> 和 <https://support.google.com/accounts/answer/151657>
+6. P3P: 全称为:Platform for Privacy Preferences Project。大多数浏览器对这个参数没有很好的支持,这个参数用来表达网站自己的隐私惯例。具体可以参考：
+
+    + <http://www.w3.org/P3P>
+    + <https://support.google.com/accounts/answer/151657>
 
 全文完
