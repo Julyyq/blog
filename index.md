@@ -6,7 +6,7 @@ Http header简单介绍
 -------------------
 打开百度首页，调出调试工具，在Network一栏里面点击www.baidu.com，我们来了解一下，headers里面的这些参数都是什么意思。如图：
 
-![](/images/http_header.jpg)
+![](/images/http_header.png)
 
 先将每个参数的概括含义标注如下,然后再详细解释：
 
