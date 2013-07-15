@@ -129,6 +129,6 @@ imgs内的样式都是为了清除浮动，因为我们需要给li元素向左�
 
 在线预览：<http://koujiaoya.com/demo/example.html>
 
-源代码：<https://github.com/Julyyq/blog/blob/gh-pages/_posts/2012-10-20-js_example.html>
+源代码：<https://github.com/Julyyq/blog/blob/gh-pages/demo/example.html>
 
 全文完
