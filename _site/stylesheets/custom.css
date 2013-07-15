@@ -1,0 +1,10 @@
+dt,dd {
+  margin: 0;
+  padding: 0;
+}
+.new-cat {
+  float: left;
+  width: 270px;
+  position: fixed;
+  top: 160px;
+}

@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>快速实现轮播效果</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>July的blog</h1>
+        <p class="view">
+            <a href="https://github.com/Julyyq/blog">View the Project on GitHub 
+                <small>Julyyq/blog</small>
+            </a>
+        </p>
+      </header>
+      <dl class="new-cat">
+        <dt>文章列表</dt>
+        <dd><a href="/2012/10/20/js_example.html">快速实现轮播效果</a></dd>
+        <dd><a href="/2012/10/01/html_doctype.html">HTML文档的标准模式和怪异模式</a></dd>
+        <dd><a href="/2012/09/03/http_header.html">Http Header简单介绍</a></dd>
+        <dd><a href="/2012/09/02/html_charset.html">给html设置charset属性</a></dd>
+        <dd><a href="/2012/09/01/secret_of_JavaScript.html">JavaScript循环中的引用</a></dd>
+        <dd><a href="/2012/08/25/use_JavaScript_operate_cookie.html">JavaScript操作cookie</a></dd>
+      </dl>
+      <section>
+        <h2 id='id5'>快速实现轮播效果</h2>
+
+<p>轮播效果，在网站开发中出现的频率非常高，尤其是在企业等展示型网站上，轮播图不仅能够让网站变得更动态，而且能够让用户产生审美上的好感。那么，对于一个前端新手或者非前端专业的人而言，如何能够快速的实现轮播效果呢？</p>
+
+<p>这篇文章我们来讨论如何快速实现类似于京东网站首页的这种轮播效果。</p>
+
+<p><img alt='' src='/images/jd.png' /></p>
+
+<p>首先，我们需要多张用来切换的图片，其次，我们需要那些代表图片位置或者顺序的数字元素。</p>
+
+<p>在HTML中，像这种“很多相似元素”排列在一起的元素，我们可以使用<code>ul</code>标签，它代表无序列表。写出来类似于：</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<p>其中，li标签与ul标签是配套的，代表某一个列表元素。li标签内，img标签外嵌套了一层a标签，我们目的是希望图片本身能够被点击，就京东的例子而言，会跳转到一些商品或者活动的详情页面。基本的结构就是这样。</p>
+
+<p>同样，那些数字也是一种列表，我们同样可以使用ul标签来布局：</p>
+
+<pre><code>&lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot;&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;&quot;&gt;3&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+<p>我们看京东网站的轮播效果，无论何时都只是显示一张图片，同时隐藏其它图片，就好比有一个窗口，透过这个窗口我们可以轮流查看到不同的图片。所以，我们还需要这样一个“窗口元素”。</p>
+
+<pre><code>&lt;div class=&quot;viewport&quot;&gt;
+    &lt;ul class=&quot;imgs&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;img src=&quot;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul class=&quot;number&quot;&gt;
+        &lt;li&gt;&lt;a href=&quot;&quot;&gt;1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;&quot;&gt;2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;&quot;&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+<p>这里ul外面的div即为窗口元素，并且赋予了其类为viewport,同时为了便于对两个列表赋予样式，我们分别给两个列表加了名为imgs和number的类。</p>
+
+<p>接下来，我们需要写一些CSS来描述其样式。CSS是一种样式语言，如果说HTML是一幢房子的钢筋混凝土等的结构，那么CSS就是铺地板刷墙等的装修。</p>
+
+<p>首先我们需要给“窗口”固定大小，并且将超出它可视范围的内容全部隐藏：</p>
+
+<pre><code>.viewport {
+    position: relative;
+    width: 670px;
+    height:240px;
+    overflow: hidden;
+}</code></pre>
+
+<p>这里给它加了相对定位是为了等会给数字列表进行绝对定位。</p>
+
+<p>然后来写图片部分:</p>
+
+<pre><code>.imgs {
+    overflow: hidden;
+    zoom: 1;
+}
+.imgs li {
+    float: left;
+    width: 670px;
+    height: 240px;
+}</code></pre>
+
+<p>imgs内的样式都是为了清除浮动，因为我们需要给li元素向左的浮动，因为默认li元素是竖向排列的。</p>
+
+<p>接下来我们给那些数字赋予样式，并且让它定位到“窗口”的右下位置：</p>
+
+<pre><code>.number {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    overflow: hidden;
+    zoom: 1;
+}
+.number li {
+    float: left;
+    width: 22px;
+    height:22px;
+    margin:0 1px;
+}
+.number li a {
+    display: inline-block;
+    width:22px;
+    height:22px;
+    line-height:22px;
+    text-align:center;
+    background:#999;
+    color: #fff;
+    font-size:12px;
+    border-radius:12px;
+    -moz-border-radius:12px;
+    -webkit-border-radius:12px;
+}
+.number li a.current {
+    background:#E4393C;
+}</code></pre>
+
+<p>然后给上面的HTML填充示例图片，你应该看到的是这样的：</p>
+
+<p><img alt='' src='/images/example_1.png' /></p>
+
+<p>最后一个步骤，我们要让它“轮播”起来。</p>
+
+<p>这里需要JavaScript脚本语言的支持，它可以让网页“动”起来，实现与用户互动等功能。因为我们需要快速实现这种轮播效果，至于轮播脚本的实现原理并不是我们所关心的内容，因此，这里我们采用一个我已经写好的脚本，我们所需要知道的只是如何去使用即可。</p>
+
+<p>首先在网页中引用这个JS文件:</p>
+
+<pre><code>&lt;script src=&quot;koujiaoya.com/javascripts/slide.js&quot;&gt;&lt;/script&gt;</code></pre>
+
+<p>然后我们给viewport元素新加一个class为slide-element,这是一个空的类，目的只是为了选中需要展现轮播效果的元素。这个JS脚本会自动获取class为slide-element的元素，为它赋予轮播功能。</p>
+
+<p>这个脚本是基于jQuery的，所以同时，我们还需要在引入上面那个脚本之前先引入jQuery文件。</p>
+
+<pre><code>&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+
+<p>到此，我们已经实现了一个最简单的轮播图效果。</p>
+
+<p>在线预览：<a href='http://koujiaoya.com/2012/10/20/js_example.html'>http://koujiaoya.com/2012/10/20/js_example.html</a></p>
+
+<p>源代码：<a href='https://github.com/Julyyq/blog/blob/gh-pages/_posts/2012-10-20-js_example.html'>https://github.com/Julyyq/blog/blob/gh-pages/_posts/2012-10-20-js_example.html</a></p>
+
+<p>全文完</p>
+        <!-- 友言 BEGIN -->
+        <div id="uyan_frame"></div>
+        <script type="text/javascript" id="UYScript" src="http://v1.uyan.cc/js/iframe.js?UYUserId=1803257" async=""></script>
+        <!-- 友言 END -->
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/Julyyq">Julyyq</a></p>
+        <p>
+            <small>Hosted on GitHub Pages &mdash; Theme by 
+                <a href="https://github.com/orderedlist">orderedlist</a>
+            </small>
+        </p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+  </body>
+</html>

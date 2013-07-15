@@ -36,7 +36,8 @@ Http header简单介绍
         Set-Cookie: 设置Http Cookie
 
 前三种很简单，不再赘述，我们来看Request Headers里面的第一个参数Accept。
-1. Accept在这里值为：`text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8`，说明可以接受3种类型的数据，分别为：`text/html`/`application/xhtml+xml`/`application/xml`。那么后面的q是什么意思？q的全称为quality values，也就是权重，衡量参数重要程度的一个值，范围为0～1，允许小数点后最多3位，默认为1，当为0时，则表示此值将不会被接受。*号表示匹配任何值。
+
+1. Accept在这里值为：`text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8`，说明可以接受3种类型的数据，分别为：`text/html`/`application/xhtml+xml`/`application/xml`。那么后面的q是什么意思？q的全称为quality values，也就是权重，衡量参数重要程度的一个值，范围为0～1，允许小数点后最多3位，默认为1，当为0时，则表示此值将不会被接受。\*号表示匹配任何值。
 
 2. Accept-Encoding在这里有3个值，其实就是3种被包装过的压缩算法，我们都知道数据传输过程中是相对比较耗时的，所以当我们发出请求时，服务器会将我们请求的内容先进行打包压缩，然后传输到客户端，并且告诉客户端我是用哪个压缩算法压缩的，然后客户端再根据相应的压缩算法进行解压缩，这样可以极大的提高数据传输效率，就拿使用最广泛的gzip来说，如果是纯文本，可以压缩到原有体积的40%左右。这里我使用的是chrome浏览器，所以支持3种压缩方式，在firefox17.0版本下，只支持前两种，第三种方式sdch是谷歌开发的压缩算法。
 
