@@ -117,13 +117,13 @@ imgs内的样式都是为了清除浮动，因为我们需要给li元素向左�
 
 首先在网页中引用这个JS文件:
     
-    <script src="koujiaoya.com/javascripts/slide.js"></script>
+    <script src="http://koujiaoya.com/javascripts/slide.js"></script>
 
 然后我们给viewport元素新加一个class为slide-element,这是一个空的类，目的只是为了选中需要展现轮播效果的元素。这个JS脚本会自动获取class为slide-element的元素，为它赋予轮播功能。
 
 这个脚本是基于jQuery的，所以同时，我们还需要在引入上面那个脚本之前先引入jQuery文件。
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
 到此，我们已经实现了一个最简单的轮播图效果。
 
