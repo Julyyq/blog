@@ -3,7 +3,7 @@ layout: default
 title: Http header简单介绍
 ---
 Http header简单介绍
--------------------
+========================
 打开百度首页，调出调试工具，在Network一栏里面点击www.baidu.com，我们来了解一下，headers里面的这些参数都是什么意思。如图：
 
 ![](/images/http_header.png)
