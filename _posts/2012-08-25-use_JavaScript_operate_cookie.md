@@ -20,7 +20,7 @@ http本身是无状态的，也就是说，每个页面都是“独立”存在�
 
 仔细观察不难发现，这个字符串里都是形如"key=value"这样的东西，并且之间都以分号分割，没错，cookie就是以分号分割的形如key=value的字符串。
 
-## 3. 如果操作cookie
+## 3. 如何操作cookie
 在JS中，以如下的方法设置cookie：
     
     document.cookie = "key=value;expires=expiresDate;";
