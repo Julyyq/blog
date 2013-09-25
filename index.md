@@ -1,188 +1,26 @@
 ---
 layout: default
-title: stylus教程2
+title: JavaScript循环中的引用2
 ---
-stylus教程2
+JavaScript循环中的引用2
 ===============
 
-变量：
-------------------
-先来看一个stylus中变量的例子：
-  
-    font-size = 14px
+这是携程网曾经用过的一道前端面试题：
 
-    body
-      font font-size Arial, sans-serif
-
-    //编译后：
-    body {
-      font: 14px Arial, sans-serif;
+    for(var i = 0;i<5;i++) {
+      setTimeout(function() {
+        console.log(i)
+      },1000)
     }
 
-在stylus中，定义变量就像在其它编程语言中一样直接用`=`号赋值即可，并不需要以`@`或者`$`为前缀开头。
+问：这段程序最终将会输出什么？
 
-同样的，变量可以包含变量：
+JS中有很多类似于这样值得思考的小地方，如果没有电脑，需要你在纸上写出这道题的答案，这时候，我们就要像计算机一样去思考。
 
-    font-size = 14px
-    font = font-size "Lucida Grande", Arial
+我们开始来分析这段程序，首先循环是什么？循环就是重复多次执行一段语句，在这个例子中，也就是执行了5次setTimeout，这意味着什么？这意味着一瞬间创建了5个定时器。其次，每个定时器都做了什么？很简单，在1秒钟之后输出i。
 
-    body
-      font font sans-serif
+是的，整个分析就这么简单，在这段语句执行完之后，5个定时器同时输出i，此时，for循环已经执行完毕，i等于5，也就是输出了5个5。这里要注意不是5个4，因为i=4的时候，循环满足i小于5,还会执行一次，这次执行完之后，通过i++，i被赋值为5，虽然5小于5不成立，但是此时i的值已经是5了。
 
-    //编译后：
-    body {
-      font: 14px "Lucida Grande", Arial sans-serif;
-    }
+是不是有点像[JavaScript循环中的引用](http://koujiaoya.com/2012/09/01/secret_of_JavaScript.html)中所讲过的那样？
 
-同样，如果你想给stylus的变量名或者函数名加`$`前缀，也是没问题的。但是`@`和`_`是不允许的。
-
-### 属性查找：
-
-这个特性是less和sass所没有的：在没有给变量指定值的情况下，stylus会以“冒泡”的方式搜索变量可能的值,如果没有查找到则返回null。
-这个特性的一个典型应用：
-
-    #logo
-      position: absolute
-      top: 50%
-      left: 50%
-      width: w = 150px
-      height: h = 80px
-      margin-left: -(w / 2)
-      margin-top: -(h / 2)
-
-这里想让#logo类的元素上下左右居中，所以margin-left和margin-top的值都依赖于width和height的值。首先，给width和height分别定义了150px和80px，为了能够让这两个值被后面的margin-left和margin-top引用到，所以让w=150px,h=80px，于是在后面的属性中就可以通过w和h来取得150px和80px这两个值。如果没有这种特性，那么我们不得不在这个类之外定义w和h两个变量:
-
-    w = 150px
-    h = 80px
-    #logo
-      position: absolute
-      top: 50%
-      left: 50%
-      width: w
-      height: h
-      margin-left: -(w / 2)
-      margin-top: -(h / 2)
-
-这两种写法，哪种更好一目了然。
-
-同时也应该注意到，stylus的这种在值中定义变量的方式实际上是在定义变量这个运算中最终返回了这个变量的值。
-
-再进一步，也是贯彻stylus极致精简的原则，stylus中可以使用@来改写上面的例子：
-
-    #logo
-      position: absolute
-      top: 50%
-      left: 50%
-      width: 150px
-      height: 80px
-      margin-left: -(@width / 2)
-      margin-top: -(@height / 2)
-
-在这个例子中，甚至省去了定义变量这个步骤！
-
-这里@的用法是不是看起来有点像coffee中@的用法？@是this的简写，this是#logo这个类的引用，#logo的样式属性都变成了对象属性，通过@width，@top等我们可以取到特定属性对应的值。貌似存在下面这么一个东西来供我们使用：
-
-    @ = {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      width: '150px',
-      height: '80px'
-    }
-
-确实，stylus的这种特性原理就是如此。
-
-这种特性的另外一种应用场景是条件定义属性：
-
-    position()
-      position: arguments
-      z-index: 1 unless @z-index
-
-    #logo
-      z-index: 20
-      position: absolute
-
-    #logo2
-      position: absolute
-
-前面提过@是以冒泡的方式来查找属性值：
-
-    body
-      color: red
-      ul
-        li
-          color: blue
-          a
-            background-color: @color
-
-    //编译为：
-    body {
-      color: #f00;
-    }
-    body ul li {
-      color: #00f;
-    }
-    body ul li a {
-      background-color: #00f;
-    }
-    //a的color是blue(#00f)而不是red(#f00)。
-
-需要注意的是，stylus只会查找到根选择器(在上面的例子中是body),如果找到就返回第一个匹配的值，如果没找到就返回null。
-
-
-插值：
------------------
-教程1中讲了在stylus中字符串插值并没有特别之处，只需要将变量放到你想放的位置就可以。现在，来看看stylus中的其它类型的插值。
-
-在stylus中使用`{}`包裹表达式来实现插值。
-
-### 标识符插值
-
-    vendor(prop, args)
-      -webkit-{prop} args
-      -moz-{prop} args
-      {prop} args
-
-    border-radius()
-      vendor('border-radius', arguments)
-    
-    box-shadow()
-      vendor('box-shadow', arguments)
-
-    button
-      border-radius 1px 2px / 3px 4px
-
-    //编译后：
-    button {
-      -webkit-border-radius: 1px 2px/3px 4px;
-      -moz-border-radius: 1px 2px/3px 4px;
-      border-radius: 1px 2px/3px 4px;
-    }
-
-通过这种方式，可以非常方便的扩展属性。这个特性已经和编程中的参数传值是一样的了。
-
-### 选择器插值
-
-    table
-      for row in 1 2 3 4 5
-        tr:nth-child({row})
-          height: 10px * row
-
-    //编译后：
-    table tr:nth-child(1) {
-      height: 10px;
-    }
-    table tr:nth-child(2) {
-      height: 20px;
-    }
-    table tr:nth-child(3) {
-      height: 30px;
-    }
-    table tr:nth-child(4) {
-      height: 40px;
-    }
-    table tr:nth-child(5) {
-      height: 50px;
-    }
-
-这个特性让我们可以非常容易去的给多个元素设置不同的属性。
+全文完
