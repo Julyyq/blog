@@ -3,10 +3,17 @@ dt,dd {
   padding: 0;
 }
 .new-cat {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 270px;
-  padding: 15px;
-  text-align: right;
+  width: 500px;
+  margin: 0 auto;
+}
+.new-cat:after {
+	content: "";
+	display: block;
+	height: 0;
+	visibility: hidden;
+	clear: both;
+}
+.new-cat dd {
+	float: left;
+	width: 250px;
 }

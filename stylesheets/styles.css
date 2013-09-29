@@ -85,6 +85,7 @@ th, td {
 dt {
   color:#444;
   font-weight:700;
+  line-height: 30px;
 }
 
 th {
