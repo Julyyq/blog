@@ -46,8 +46,10 @@ a small {
 }
 
 .wrapper {
-  width:860px;
+  width:600px;
   margin:0 auto;
+  background-color: white;
+  padding-bottom: 50px;
 }
 
 blockquote {
@@ -163,6 +165,7 @@ header ul a strong {
 section {
   width:500px;
   padding-bottom:50px;
+  padding-top:50px;
   margin: 0 auto;
 }
 
