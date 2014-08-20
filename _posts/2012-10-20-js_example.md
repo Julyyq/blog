@@ -117,7 +117,7 @@ imgs内的样式都是为了清除浮动，因为我们需要给li元素向左�
 
 首先在网页中引用这个JS文件:
     
-    <script src="http://koujiaoya.com/javascripts/slide.js"></script>
+    <script src="http://allenyoung.me/javascripts/slide.js"></script>
 
 然后我们给viewport元素新加一个class为slide-element,这是一个空的类，目的只是为了选中需要展现轮播效果的元素。这个JS脚本会自动获取class为slide-element的元素，为它赋予轮播功能。
 
@@ -127,7 +127,7 @@ imgs内的样式都是为了清除浮动，因为我们需要给li元素向左�
 
 到此，我们已经实现了一个最简单的轮播图效果。
 
-在线预览：<http://koujiaoya.com/demo/example.html>
+在线预览：<http://allenyoung.me/demo/example.html>
 
 源代码：<https://github.com/Julyyq/blog/blob/gh-pages/demo/example.html>
 
