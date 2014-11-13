@@ -23,3 +23,7 @@ dt,dd {
 	float: left;
 	width: 250px;
 }
+.see-old {
+  width: 500px;
+  margin: 0 auto;
+}
