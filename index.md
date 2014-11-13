@@ -12,7 +12,9 @@ Also, I developed iOS app [Health care app TRUSTED DOCTOR](https://itunes.apple.
 
 Further more, I like nodejs and ruby on rails, I'm giving a big hug with them.
 
-I used countless tools and libraries like git,slim,stylus,saas,less,backbone,underscore,coffee,jade,ejs,AFNetworking,FMDB,cocoapods......
+I used countless tools and libraries like:
+	 
+	 git,slim,stylus,saas,less,backbone,underscore,coffee,jade,ejs,AFNetworking,FMDB,cocoapods......
 
 Recently, I'm learing design with using Sketch.
 
