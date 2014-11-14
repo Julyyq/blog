@@ -16,6 +16,8 @@ I used countless tools and libraries like:
 	 
 	 git,slim,stylus,saas,less,backbone,underscore,coffee,jade,ejs,AFNetworking,FMDB,cocoapods......
 
+I made a lot of technical topics how-to videos on [Youku](http://i.youku.com/u/UMTI4NTM5NDU0OA==) to help beginning learners.
+
 Recently, I'm learing design with using Sketch.
 
 You can find me through [github](https://github.com/julyyq) or [stackoverflow](http://stackoverflow.com/users/1843805/allen).
