@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>stylus教程6</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="stylus6">stylus教程6</h1>
+
+<h3 id="section">内置函数</h3>
+
+<p>和less以及sass一样，stylus也内置了很多函数，这些内置函数让stylus可以写的非常复杂。</p>
+
+<p>这篇文章将挑选部分内置函数来探讨，全部内置函数请访问stylus官方文档<a href="http://learnboost.github.io/stylus/docs/bifs.html">http://learnboost.github.io/stylus/docs/bifs.html</a>。</p>
+
+<h4 id="pushexpr-args">push(expr, args…)</h4>
+
+<p>将args合并到expr中。</p>
+
+<pre><code>nums = 1 2
+push(nums, 3, 4, 5)
+
+nums
+// =&gt; 1 2 3 4 5
+</code></pre>
+
+<p>别名是append()。</p>
+
+<h4 id="unshiftexpr-args">unshift(expr, args…)</h4>
+
+<p>将args中的元素依此插入到expr前面。</p>
+
+<pre><code>nums = 4 5
+unshift(nums, 3, 2, 1)
+
+nums
+// =&gt; 1 2 3 4 5
+</code></pre>
+
+<p>别名prepend()。</p>
+
+<h4 id="keyspairs">keys(pairs)</h4>
+
+<p>返回键值对的属性名称。</p>
+
+<pre><code>pairs = (one 1) (two 2) (three 3)
+keys(pairs)
+// =&gt; one two three
+</code></pre>
+
+<h4 id="valuespairs">values(pairs)</h4>
+
+<p>返回键值对的属性值。</p>
+
+<pre><code>pairs = (one 1) (two 2) (three 3)
+values(pairs)
+// =&gt; 1 2 3
+</code></pre>
+
+<h4 id="typeofnode">typeof(node)</h4>
+
+<p>以字符串形式返回node的类型。</p>
+
+<p>type(12)
+// =&gt; ‘unit’</p>
+
+<p>typeof(12)
+// =&gt; ‘unit’</p>
+
+<p>typeof(#fff)
+// =&gt; ‘rgba’</p>
+
+<p>type-of(#fff)
+// =&gt; ‘rgba’</p>
+
+<p>别名有type和type-of。</p>
+
+<h4 id="unitunit-type">unit(unit[, type])</h4>
+
+<p>设置或返回unit的类型。</p>
+
+<pre><code>unit(10)
+// =&gt; ''
+
+unit(15in)
+// =&gt; 'in'
+
+unit(15%, 'px')
+// =&gt; 15px
+
+unit(15%, px)
+// =&gt; 15px
+</code></pre>
+
+<h4 id="matchpattern-string">match(pattern, string)</h4>
+
+<p>测试string是否符合pattern。</p>
+
+<pre><code>match('^foo(bar)?', foo)
+match('^foo(bar)?', foobar)
+// =&gt; true
+
+match('^foo(bar)?', 'foo')
+match('^foo(bar)?', 'foobar')
+// =&gt; true
+
+match('^foo(bar)?', 'bar')
+// =&gt; false
+</code></pre>
+
+<h4 id="base-convertnum-base-width">base-convert(num, base, width)</h4>
+
+<p>num为十进制数字，base为目标进制，范围是2到36，width代表转换后的位数，默认值是2。</p>
+
+<h4 id="joindelim-vals">join(delim, vals…)</h4>
+
+<p>这和javascript中的join函数一样。</p>
+
+<pre><code>join(' ', 1 2 3)
+// =&gt; "1 2 3"
+
+join(',', 1 2 3)
+// =&gt; "1,2,3"
+
+join(', ', foo bar baz)
+// =&gt; "foo, bar, baz"
+
+join(', ', foo, bar, baz)
+// =&gt; "foo, bar, baz"
+
+join(', ', 1 2, 3 4, 5 6)
+// =&gt; "1 2, 3 4, 5 6"
+</code></pre>
+
+<h4 id="unquotestr--ident">unquote(str | ident)</h4>
+
+<p>将str解释为字面量。</p>
+
+<h4 id="sfmt-">s(fmt, …)</h4>
+
+<p>s()函数和unquote()很像，但是s()像C语言中的sprintf接受格式化的字符串。目前支持的分类符号是<code>%s</code>。</p>
+
+<pre><code>s('bar()');
+// =&gt; bar()
+
+s('bar(%s)', 'baz');
+// =&gt; bar("baz")
+
+s('bar(%s)', baz);
+// =&gt; bar(baz)
+
+s('bar(%s)', 15px);
+// =&gt; bar(15px)
+
+s('rgba(%s, %s, %s, 0.5)', 255, 100, 50);
+// =&gt; rgba(255, 100, 50, 0.5)
+
+s('bar(%Z)', 15px);
+// =&gt; bar(%Z)
+
+s('bar(%s, %s)', 15px);
+// =&gt; bar(15px, null)
+</code></pre>
+
+<h4 id="operateop-left-right">operate(op, left, right)</h4>
+
+<p>left和right分别是左右操作数,op为操作符。</p>
+
+<pre><code>op = '+'
+operate(op, 15, 5)
+// =&gt; 20
+</code></pre>
+
+<h4 id="lengthexpr">length([expr])</h4>
+
+<p>返回expr的长度。</p>
+
+<pre><code>length((1 2 3 4))
+// =&gt; 4
+
+length((1 2))
+// =&gt; 2
+
+length((1))
+// =&gt; 1
+
+length(())
+// =&gt; 0
+
+length(1 2 3)
+// =&gt; 3
+
+length(1)
+// =&gt; 1
+
+length()
+// =&gt; 0
+</code></pre>
+
+<h4 id="lastexpr">last(expr)</h4>
+
+<p>返回表达式上一次的值。</p>
+
+<pre><code>nums = 1 2 3
+last(nums)
+last(1 2 3)
+// =&gt; 3
+
+list = (one 1) (two 2) (three 3)
+last(list)
+// =&gt; (three 3)
+</code></pre>
+
+<h4 id="image-sizepath">image-size(path)</h4>
+
+<p>返回图片的宽和高。</p>
+
+<h4 id="add-propertyname-expr">add-property(name, expr)</h4>
+
+<p>给最近的块增加属性。</p>
+
+<pre><code>something()
+  add-property('bar', 1 2 3)
+  s('bar')
+
+body
+  foo: something()
+</code></pre>
+
+<p>编译为：</p>
+
+<pre><code>body {
+  bar: 1 2 3;
+  foo: bar;
+}
+</code></pre>
+
+<p>全文完</p>
+
+      </section>
+      <dl class="new-cat">
+        <dt>文章列表</dt>
+        <dd><a href="/2013/09/30/stylus_6.html">stylus教程6</a></dd>
+        <dd><a href="/2013/09/30/stylus_5.html">stylus教程5</a></dd>
+        <dd><a href="/2013/09/29/stylus_4.html">stylus教程4</a></dd>
+        <dd><a href="/2013/09/29/stylus_3.html">stylus教程3</a></dd>
+        <dd><a href="/2013/09/25/palindrome.html">判断是否回文数的Javascript实现</a></dd>
+        <dd><a href="/2013/09/25/javascript_array_unique.html">使用JavaScript对数组去重</a></dd>
+        <dd><a href="/2013/09/25/secret_of_JavaScript_2.html">JavaScript循环中的引用2</a></dd>
+        <dd><a href="/2013/08/30/stylus_2.html">stylus教程2</a></dd>
+        <dd><a href="/2013/08/29/stylus_1.html">stylus教程1</a></dd>
+        <dd><a href="/2012/10/20/js_example.html">快速实现轮播效果</a></dd>
+        <dd><a href="/2012/10/01/html_doctype.html">HTML文档的标准模式和怪异模式</a></dd>
+        <dd><a href="/2012/09/03/http_header.html">Http Header简单介绍</a></dd>
+        <dd><a href="/2012/09/02/html_charset.html">给html设置charset属性</a></dd>
+        <dd><a href="/2012/09/01/secret_of_JavaScript.html">JavaScript循环中的引用</a></dd>
+        <dd><a href="/2012/08/25/use_JavaScript_operate_cookie.html">JavaScript操作cookie</a></dd>
+      </dl>
+    </div>
+  </body>
+</html>

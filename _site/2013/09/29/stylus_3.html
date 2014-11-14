@@ -1,0 +1,396 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>stylus教程3</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="stylus3">stylus教程3</h1>
+
+<h2 id="section">运算符</h2>
+<p>stylus支持的操作符让你觉得stylus就是一种高级编程语言！</p>
+
+<h3 id="section-1">操作符优先级</h3>
+
+<p>操作符优先级从高到低：</p>
+
+<pre><code>[]
+! ~ + -
+is defined
+** * / %
++ -
+... ..
+&lt;= &gt;= &lt; &gt;
+in
+== is != is not isnt
+is a
+&amp;&amp; and || or
+?:
+= := ?= += -= *= /= %=
+not
+if unless
+</code></pre>
+
+<h3 id="section-2">单元操作符</h3>
+
+<p>单元操作符有：<code>!</code>、<code>not</code>、<code>-</code>、<code>+</code>、<code>~</code>。</p>
+
+<pre><code>!0
+// =&gt; true
+
+!!0
+// =&gt; false
+
+!1
+// =&gt; false
+
+!!5px
+// =&gt; true
+
+-5px
+// =&gt; -5px
+
+--5px
+// =&gt; 5px
+
+not true
+// =&gt; false
+
+not not true
+// =&gt; true
+</code></pre>
+
+<p>逻辑操作符<code>not</code>的优先级比较低，所以下面的例子可以使用not重写：</p>
+
+<pre><code>a = 0
+b = 1
+
+!a and !b
+// =&gt; false
+// pased as: (!a) and (!b)
+
+//重写：
+not a or b
+// =&gt; false
+// parsed as: not (a or b)
+</code></pre>
+
+<h3 id="section-3">二元操作符</h3>
+
+<h4 id="section-4">下标[]</h4>
+
+<p>下标操作符允许在表达式中通过索引来获取值。使用圆括号包裹的表达式可以是一个元组(比如<code>(15px 15px)</code>，<code>(1 2 3)</code>)。</p>
+
+<p>下面是一个使用下标来控制错误的例子：</p>
+
+<pre><code>add(a, b)
+ if a is a 'unit' and b is a 'unit'
+   a + b
+ else
+   (error 'a and b must be units!')
+
+body
+ padding add(1,'5')
+ // =&gt; padding: error "a and b must be units";
+ 
+ padding add(1,'5')[0]
+ // =&gt; padding: error;
+ 
+ padding add(1,'5')[0] == error
+ // =&gt; padding: true;
+
+ padding add(1,'5')[1]
+ // =&gt; padding: "a and b must be units";
+</code></pre>
+
+<p>下面是一个稍微复杂点的例子，调用了内置的error()函数，无论何时都会输出第一个error信息。</p>
+
+<pre><code>if (val = add(1,'5'))[0] == error
+  error(val[1])
+</code></pre>
+
+<h3 id="range--">range .. …</h3>
+
+<pre><code>1..5
+// =&gt; 1 2 3 4 5
+
+1...5
+// =&gt; 1 2 3 4
+</code></pre>
+
+<h3 id="section-5">加减</h3>
+
+<p>stylus中的加减操作符，可以判断单位，进行类型上的转换。</p>
+
+<pre><code>15px - 5px
+// =&gt; 10px
+
+5 - 2
+// =&gt; 3
+
+5in - 50mm
+// =&gt; 3.031in
+
+5s - 1000ms
+// =&gt; 4s
+
+20mm + 4in
+// =&gt; 121.6mm
+
+"foo " + "bar"
+// =&gt; "foo bar"
+
+"num " + 15
+// =&gt; "num 15"
+</code></pre>
+
+<h3 id="section-6">倍增的 / * %</h3>
+
+<pre><code>2000ms + (1s * 2)
+// =&gt; 4000ms
+
+5s / 2
+// =&gt; 2.5s
+
+4 % 2
+// =&gt; 0
+</code></pre>
+
+<p>在属性中使用<code>/</code>操作符的时候，必须用圆括号包起来，否则<code>/</code>号将被当做字面量来解释。</p>
+
+<h3 id="section-7">指数 **</h3>
+
+<pre><code>2 ** 8
+// =&gt; 256
+</code></pre>
+
+<h3 id="section-8">大于小于和等于 == != &gt;= &lt;= &gt; &lt;</h3>
+
+<p>相等操作符可以被用来比较单位，颜色，字符串，甚至标识符。这非常强大，甚至一个随意的标识符(比如<code>wahoo</code>)。</p>
+
+<pre><code>5 == 5
+// =&gt; true
+
+10 &gt; 5
+// =&gt; true
+
+#fff == #fff
+// =&gt; true
+
+true == false
+// =&gt; false
+
+wahoo == yay
+// =&gt; false
+
+wahoo == wahoo
+// =&gt; true
+
+"test" == "test"
+// =&gt; true
+
+true is true
+// =&gt; true
+
+'hey' is not 'bye'
+// =&gt; true
+
+'hey' isnt 'bye'
+// =&gt; true
+
+(foo bar) == (foo bar)
+// =&gt; true
+
+(1 2 3) == (1 2 3)
+// =&gt; true
+
+(1 2 3) == (1 1 3)
+// =&gt; false
+</code></pre>
+
+<p><code>==</code>不但将字面量考虑在内，还考虑了类型。所以<code>0 == false</code>和<code>null == false</code>都将返回false。</p>
+
+<h3 id="truthfulness">Truthfulness</h3>
+
+<p>任何长度大于1的表达式都会被认为是true。</p>
+
+<pre><code>0% 
+0px
+1px 
+-1
+-1px
+hey
+'hey'
+(0 0 0)
+('' '')
+</code></pre>
+
+<p>下面这些会被认为是false：</p>
+
+<pre><code>0 
+null
+false
+''
+</code></pre>
+
+<h3 id="and-or">逻辑操作符 &amp;&amp; || and or</h3>
+
+<table>
+  <tbody>
+    <tr>
+      <td>%%和and是一样的，</td>
+      <td> </td>
+      <td>和or是一样的。</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="in">存在操作符 in</h3>
+
+<p>in操作符用来检查in左边的操作数是否存在于in右边的操作数中。</p>
+
+<pre><code>nums = 1 2 3
+1 in nums
+// =&gt; true
+
+5 in nums
+// =&gt; false
+</code></pre>
+
+<h3 id="conditional-assignment--">conditional assignment ?= :=</h3>
+
+<p><code>?=</code>和<code>:=</code>是等价的。</p>
+
+<pre><code>color := white
+color ?= white
+color = color is defined ? color : white
+</code></pre>
+
+<h3 id="instance-check-is-a">instance check: is a</h3>
+
+<p>stylus提供了一个二元操作符<code>is a</code>去执行类型检查。</p>
+
+<pre><code>15 is a 'unit'
+// =&gt; true
+
+#fff is a 'rgba'
+// =&gt; true
+
+15 is a 'rgba'
+// =&gt; false
+</code></pre>
+
+<p>同样，你也可以使用<code>type()</code>函数来执行同样的操作：</p>
+
+<pre><code>type(#fff) == 'rgba'
+// =&gt; true      
+</code></pre>
+
+<h3 id="is-defined">变量定义: is defined</h3>
+
+<p>这是一个伪二元操作符，不接受又操作数，并且不会计算左操作数。</p>
+
+<pre><code>foo is defined
+// =&gt; false
+
+foo = 15px
+foo is defined
+// =&gt; true
+
+#fff is defined
+// =&gt; 'invalid "is defined" check on non-variable #fff'
+</code></pre>
+
+<h3 id="section-9">三元操作符</h3>
+
+<p>三元操作符和其它编程语言中是一样的。</p>
+
+<pre><code>num = 15
+num ? unit(num, 'px') : 20px
+// =&gt; 15px
+</code></pre>
+
+<h3 id="casting">casting</h3>
+
+<p>使用unit内置函数可以加单位后缀。</p>
+
+<pre><code>body
+n = 5
+foo: (n)em
+foo: (n)%
+foo: (n + 5)%
+foo: (n * 5)px
+foo: unit(n + 5, '%')
+foo: unit(5 + 180 / 2, deg)
+</code></pre>
+
+<h3 id="section-10">颜色操作符</h3>
+
+<p>stylus中对颜色的操作又是甩了less和sass好几条街，你只需要这么做：</p>
+
+<pre><code>#0e0 + #0e0
+// =&gt; #0f0
+</code></pre>
+
+<p>如果你想加深或者减淡颜色，操作没什么不同：</p>
+
+<pre><code>#888 + 50%
+// =&gt; #c3c3c3
+
+#888 - 50%
+// =&gt; #444
+</code></pre>
+
+<h3 id="sprintf">sprintf</h3>
+
+<p>格式化字符串在stylus中也非常简单，内部实现是通过内置的<code>s()</code>函数来实现。</p>
+
+<pre><code>'X::Microsoft::Crap(%s)' % #fc0
+// =&gt; X::Microsoft::Crap(#fc0)
+</code></pre>
+
+<p>如果有多个参数，那么可以这么写：</p>
+
+<pre><code>'-webkit-gradient(%s, %s, %s)' % (linear (0 0) (0 100%))
+// =&gt; -webkit-gradient(linear, 0 0, 0 100%)
+</code></pre>
+
+<p>以上就是stylus中有关操作符的主要部分，通过了解我们发现stylus简直就跟一门全新的编程语言一样，是的，没错。</p>
+
+<p>全文完</p>
+
+      </section>
+      <dl class="new-cat">
+        <dt>文章列表</dt>
+        <dd><a href="/2013/09/30/stylus_6.html">stylus教程6</a></dd>
+        <dd><a href="/2013/09/30/stylus_5.html">stylus教程5</a></dd>
+        <dd><a href="/2013/09/29/stylus_4.html">stylus教程4</a></dd>
+        <dd><a href="/2013/09/29/stylus_3.html">stylus教程3</a></dd>
+        <dd><a href="/2013/09/25/palindrome.html">判断是否回文数的Javascript实现</a></dd>
+        <dd><a href="/2013/09/25/javascript_array_unique.html">使用JavaScript对数组去重</a></dd>
+        <dd><a href="/2013/09/25/secret_of_JavaScript_2.html">JavaScript循环中的引用2</a></dd>
+        <dd><a href="/2013/08/30/stylus_2.html">stylus教程2</a></dd>
+        <dd><a href="/2013/08/29/stylus_1.html">stylus教程1</a></dd>
+        <dd><a href="/2012/10/20/js_example.html">快速实现轮播效果</a></dd>
+        <dd><a href="/2012/10/01/html_doctype.html">HTML文档的标准模式和怪异模式</a></dd>
+        <dd><a href="/2012/09/03/http_header.html">Http Header简单介绍</a></dd>
+        <dd><a href="/2012/09/02/html_charset.html">给html设置charset属性</a></dd>
+        <dd><a href="/2012/09/01/secret_of_JavaScript.html">JavaScript循环中的引用</a></dd>
+        <dd><a href="/2012/08/25/use_JavaScript_operate_cookie.html">JavaScript操作cookie</a></dd>
+      </dl>
+    </div>
+  </body>
+</html>

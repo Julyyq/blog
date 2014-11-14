@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>stylus教程5</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="stylus5">stylus教程5</h1>
+
+<p>stylus中的混合和函数的定义方式完全一样，那么混合和函数的区别在哪里呢？答案是函数可以有返回值。</p>
+
+<pre><code>add(a, b)
+  a + b
+body 
+  padding add(10px, 5)
+//编译为
+body {
+  padding: 15px;
+}
+</code></pre>
+
+<h3 id="section">变量的默认值</h3>
+
+<p>在定义混合或者函数的时候，向less和sass一样，可以给变量赋予一个默认值，这个默认值也可以是一个有返回值的函数。</p>
+
+<pre><code>add(a, b = a)
+  a + b
+
+add(10, 5)
+// =&gt; 15
+
+add(10)
+// =&gt; 20
+
+add(a, b = unit(a, px))
+  a + b
+</code></pre>
+
+<h3 id="section-1">给参数命名</h3>
+
+<p>stylus的这个特性的方便之处在于，允许你忘记参数的顺序。</p>
+
+<pre><code>subtract(a, b)
+  a - b
+
+subtract(b: 10, a: 25)
+</code></pre>
+
+<h3 id="section-2">返回多个值</h3>
+
+<p>在stylus中，就像可以给函数赋多个参数一样，可以让函数返回多个值。</p>
+
+<pre><code>sizes()
+  15px 10px
+
+sizes()
+// =&gt; 15px 10px
+</code></pre>
+
+<p>这里需要注意的一个例外情况是，当返回的多个值是标识符的时候，比如下面这样：</p>
+
+<pre><code>swap(a, b)
+  b a
+</code></pre>
+
+<p>在stylus中，这样写可以理解为a是b的值，所以为了避免这种解释错误，可以写成<code>(b a)</code>或者使用<code>return</code>关键字。</p>
+
+<h3 id="section-3">给函数重命名</h3>
+
+<p>在stylus中，给函数重命名就是如此的简单：</p>
+
+<pre><code>plus = add
+  
+plus(1, 2)
+// =&gt; 3
+</code></pre>
+
+<h3 id="section-4">将函数作为参数传递</h3>
+
+<p>在JavaScript中，函数是第一类的，所以可以把函数当做参数来传递，在stylus中，同样可以使用如此强大的特性：</p>
+
+<pre><code>invoke(a, b, fn)
+  fn(a, b)
+
+add(a, b)
+  a + b
+
+body
+  padding invoke(5, 10, add)
+  padding invoke(5, 10, sub)
+</code></pre>
+
+<p>编译为：</p>
+
+<pre><code>body {
+  padding: 15;
+  padding: -5;
+}
+</code></pre>
+
+<p>全文完</p>
+
+      </section>
+      <dl class="new-cat">
+        <dt>文章列表</dt>
+        <dd><a href="/2013/09/30/stylus_6.html">stylus教程6</a></dd>
+        <dd><a href="/2013/09/30/stylus_5.html">stylus教程5</a></dd>
+        <dd><a href="/2013/09/29/stylus_4.html">stylus教程4</a></dd>
+        <dd><a href="/2013/09/29/stylus_3.html">stylus教程3</a></dd>
+        <dd><a href="/2013/09/25/palindrome.html">判断是否回文数的Javascript实现</a></dd>
+        <dd><a href="/2013/09/25/javascript_array_unique.html">使用JavaScript对数组去重</a></dd>
+        <dd><a href="/2013/09/25/secret_of_JavaScript_2.html">JavaScript循环中的引用2</a></dd>
+        <dd><a href="/2013/08/30/stylus_2.html">stylus教程2</a></dd>
+        <dd><a href="/2013/08/29/stylus_1.html">stylus教程1</a></dd>
+        <dd><a href="/2012/10/20/js_example.html">快速实现轮播效果</a></dd>
+        <dd><a href="/2012/10/01/html_doctype.html">HTML文档的标准模式和怪异模式</a></dd>
+        <dd><a href="/2012/09/03/http_header.html">Http Header简单介绍</a></dd>
+        <dd><a href="/2012/09/02/html_charset.html">给html设置charset属性</a></dd>
+        <dd><a href="/2012/09/01/secret_of_JavaScript.html">JavaScript循环中的引用</a></dd>
+        <dd><a href="/2012/08/25/use_JavaScript_operate_cookie.html">JavaScript操作cookie</a></dd>
+      </dl>
+    </div>
+  </body>
+</html>

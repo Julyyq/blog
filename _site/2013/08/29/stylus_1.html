@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>stylus教程1</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="stylus1">stylus教程1</h1>
+
+<p>less/sass/stylus俨然已经成为现在最常用的3种动态CSS语言，从这篇文章开始，我将详细的介绍stylus。</p>
+
+<h2 id="stylus">stylus简介</h2>
+<p>stylus借鉴了sass的一些思想，变量/混合/函数/继承/扩展/插值等等特性在stylus里都有，但是在写法上，stylus追求极致的简单，花括号/冒号/分号以及一些逗号统统都可以省略，变量也不需要像less一样以@开头，或者向sass一样以$开头，看起来就像普通的字符串一样，甚至于调用混合时的参数的小括号也可以省略。这样的特性之下，使得stylus的结构看起来更加清晰。</p>
+
+<pre><code>border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+  
+body
+  font 12px Helvetica, Arial, sans-serif
+  
+a.button
+  border-radius 5px
+
+//编译后：
+border-radius() {
+  -webkit-border-radius: arguments;
+  -moz-border-radius: arguments;
+  border-radius: arguments;
+}
+body {
+  font: 12px Helvetica, Arial, sans-serif;
+}
+a.button {
+  border-radius: 5px;
+}
+</code></pre>
+
+<p>stylus支持现代编程语言的函数</p>
+
+<pre><code>sum(nums...)
+  sum = 0
+  sum += n for n in nums
+  
+sum(1,2,3,4)
+// =&gt; 10
+</code></pre>
+
+<p>这是什么概念？这意味着写CSS已经和真正的编程越来越接近，stylus可以变得非常强大！</p>
+
+<p>字符串插值。在stylus中，字符串插值不需要特殊的写法：</p>
+
+<pre><code>fonts = helvetica, arial, sans-serif
+
+body {
+  padding: 50px;
+  font: 14px/1.4 fonts;
+}
+
+//编译后：
+body {
+  padding: 50px;
+  font: 14px/1.4 helvetica, arial, sans-serif;
+}
+</code></pre>
+
+<p>你只需要简单的将变量放到你想放到的位置就行了。而在less和sass中，你却不得不将变量包裹在<code>@{}</code>或者<code>#{}</code>中，而且，stylus还支持更加强大的选择器插值和属性插值，有关插值的具体内容会在随后的文章中介绍。</p>
+
+<p>stylus使用node编写,要使用stylus,只需要在terminal中运行:</p>
+
+<pre><code>npm install stylus
+</code></pre>
+
+<p>如果你要全局使用stylus命令，则运行:</p>
+
+<pre><code>npm install -g stylus
+</code></pre>
+
+<h2 id="section">选择器</h2>
+<p>stylus支持基于缩进的写法，但同时也支持css风格的写法，也就是说，花括号/冒号/分号/逗号都是可选的。</p>
+
+<p>多个选择器可以合在一起写：</p>
+
+<pre><code>textarea, input
+  border 1px solid #eee
+</code></pre>
+
+<p>你也可以分两行以省略逗号：</p>
+
+<pre><code>textarea 
+input
+  border 1px solid #eee
+</code></pre>
+
+<p>但是有一处地方需要注意：</p>
+
+<pre><code>div p
+input
+  border: 1px solid #ccc
+</code></pre>
+
+<p>这样的写法有两种可能:<code>p</code>是<code>div</code>的属性值,<code>div p</code>是一个选择器。虽然我们的意图是后者，但是stylus的编译器无法区分两者。所以在这种情况下，换行的逗号是必须的：</p>
+
+<pre><code>div p,
+input
+  border: 1px solid #ccc
+</code></pre>
+
+<h2 id="section-1">对父选择器的引用</h2>
+<p>和less和sass一样，对父选择器的引用都是通过<code>&amp;</code>符号来实现。</p>
+
+<pre><code>a
+  color: #333333
+  &amp;.cur
+    color: #000000
+</code></pre>
+
+<h2 id="section-2"><code>-</code>号</h2>
+<p><code>-</code>号有‘负号’和’减法运算符’两种含义。在stylus中的混合或者函数，默认<code>-</code>号表示减法运算符，如果你要表示负数，那么可以用小括号包裹起来：</p>
+
+<pre><code>pad(n)
+  padding (- n)
+
+body
+  pad(5px)
+</code></pre>
+
+<p>当然，只有在函数或者混合中你才需要这样做，在其它地方你可以直接写：</p>
+
+<pre><code>body
+  padding -5px
+</code></pre>
+
+<h2 id="section-3">特殊样式</h2>
+<p>有一些不“普通”的样式，比如IE的一些滤镜。stylus编译器无法解释，这种情况下，你可以使用<code>unquote</code>方法将这些特殊的值包裹起来：</p>
+
+<pre><code>filter unquote('progid:DXImageTransform.Microsoft.BasicImage(rotation=1)')
+
+//编译后：
+filter progid:DXImageTransform.Microsoft.BasicImage(rotation=1)
+</code></pre>
+
+      </section>
+      <dl class="new-cat">
+        <dt>文章列表</dt>
+        <dd><a href="/2013/09/30/stylus_6.html">stylus教程6</a></dd>
+        <dd><a href="/2013/09/30/stylus_5.html">stylus教程5</a></dd>
+        <dd><a href="/2013/09/29/stylus_4.html">stylus教程4</a></dd>
+        <dd><a href="/2013/09/29/stylus_3.html">stylus教程3</a></dd>
+        <dd><a href="/2013/09/25/palindrome.html">判断是否回文数的Javascript实现</a></dd>
+        <dd><a href="/2013/09/25/javascript_array_unique.html">使用JavaScript对数组去重</a></dd>
+        <dd><a href="/2013/09/25/secret_of_JavaScript_2.html">JavaScript循环中的引用2</a></dd>
+        <dd><a href="/2013/08/30/stylus_2.html">stylus教程2</a></dd>
+        <dd><a href="/2013/08/29/stylus_1.html">stylus教程1</a></dd>
+        <dd><a href="/2012/10/20/js_example.html">快速实现轮播效果</a></dd>
+        <dd><a href="/2012/10/01/html_doctype.html">HTML文档的标准模式和怪异模式</a></dd>
+        <dd><a href="/2012/09/03/http_header.html">Http Header简单介绍</a></dd>
+        <dd><a href="/2012/09/02/html_charset.html">给html设置charset属性</a></dd>
+        <dd><a href="/2012/09/01/secret_of_JavaScript.html">JavaScript循环中的引用</a></dd>
+        <dd><a href="/2012/08/25/use_JavaScript_operate_cookie.html">JavaScript操作cookie</a></dd>
+      </dl>
+    </div>
+  </body>
+</html>

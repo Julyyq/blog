@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>HTML文档的标准模式和怪异模式</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="html">HTML文档的标准模式和怪异模式</h1>
+
+<p>这个话题已经很老了,但却依然是前端面试中高概率被考到的问题。对于初学者而言，弄明白这些概念，非常重要,因为这将直接影响到整个html的呈现。</p>
+
+<h3 id="doctype">doctype</h3>
+
+<p>这是一个没有结束标签的html标签，位于整个html页面的最开始，也就是html标签之前，它的作用是声明html页面以什么标准来渲染。渲染标准有很多，比如html 4.01，以及在html5之前用的比较多的xhtml等，当然，还有Strict模式。目前大多数网站都采用了html5的doctype，因为它非常的简洁，它会告诉浏览器以标准模式对页面进行渲染，你或许有点疑惑，那些旧版本的浏览器比如IE6/7它们怎么也能识别html5的声明?IE6/7出来的时候还没有html5标准啊。真相是只要符合!doctype 这样的写法格式，浏览器就会自动以标准模式来渲染页面。doctype对大小写不敏感，也就是说，你可以写成小写的。</p>
+
+<h3 id="section">怪异模式</h3>
+
+<p>怪异模式其实并不怪异，它其实只是为了向后兼容而将整个html文档不以标准来进行渲染，而是以浏览器自己私有的一套规则来解析。那么什么情况下会触发怪异模式呢？</p>
+
+<pre><code>1. 文件类型描述缺失或不完整时;
+2. 遇到一个HTML 3或者更早的文档时；
+3. 使用HTML 4.0 Transitional或Frameset的文件类型描述且系统标识符（URI）不存在时；
+4. 在DOCTYPE声明之前出现SGML注释或者其它无法识别的内容时；
+5. 文档任何地方有错误时；
+6. 注释符相遇时出现末尾文字重复；
+7. Internet Explorer 6也会在DOCTYPE声明之前出现XML声明时使用quirks模式。
+</code></pre>
+
+<p>这里有一点需要注意一下，就是一个html页面的最开始，不要写注释，否则根据第4条就会触发怪异模式。</p>
+
+<h3 id="section-1">标准模式和怪异模式有什么异同呢？</h3>
+
+<p>最大的一个不同之处是对盒模型的处理，IE的怪异模式下，元素的宽度是包含padding和border的，而标准模式元素的宽度只是content的宽度。</p>
+
+<p>全文完</p>
+
+      </section>
+      <dl class="new-cat">
+        <dt>文章列表</dt>
+        <dd><a href="/2013/09/30/stylus_6.html">stylus教程6</a></dd>
+        <dd><a href="/2013/09/30/stylus_5.html">stylus教程5</a></dd>
+        <dd><a href="/2013/09/29/stylus_4.html">stylus教程4</a></dd>
+        <dd><a href="/2013/09/29/stylus_3.html">stylus教程3</a></dd>
+        <dd><a href="/2013/09/25/palindrome.html">判断是否回文数的Javascript实现</a></dd>
+        <dd><a href="/2013/09/25/javascript_array_unique.html">使用JavaScript对数组去重</a></dd>
+        <dd><a href="/2013/09/25/secret_of_JavaScript_2.html">JavaScript循环中的引用2</a></dd>
+        <dd><a href="/2013/08/30/stylus_2.html">stylus教程2</a></dd>
+        <dd><a href="/2013/08/29/stylus_1.html">stylus教程1</a></dd>
+        <dd><a href="/2012/10/20/js_example.html">快速实现轮播效果</a></dd>
+        <dd><a href="/2012/10/01/html_doctype.html">HTML文档的标准模式和怪异模式</a></dd>
+        <dd><a href="/2012/09/03/http_header.html">Http Header简单介绍</a></dd>
+        <dd><a href="/2012/09/02/html_charset.html">给html设置charset属性</a></dd>
+        <dd><a href="/2012/09/01/secret_of_JavaScript.html">JavaScript循环中的引用</a></dd>
+        <dd><a href="/2012/08/25/use_JavaScript_operate_cookie.html">JavaScript操作cookie</a></dd>
+      </dl>
+    </div>
+  </body>
+</html>

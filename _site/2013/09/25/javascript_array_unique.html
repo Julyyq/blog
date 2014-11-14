@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>使用JavaScript对数组去重</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="javascript">使用JavaScript对数组去重</h1>
+
+<p>这是一个非常经典的问题，我们平时可能遇到一些需要对数组进行去重的操作时，直接就使用underscore的unique方法了，当然，underscore的unique函数还提供了一些例如resort的额外功能，我们平时可能很少去关心去重的核心原理是怎样的。</p>
+
+<p>经典的问题，往往会产生出经典的方法，它就是这么的简短：</p>
+
+<pre><code>var unique = function(arr) {
+  if(toString.call(arr) !== '[object Array]') {
+    throw Error("参数必须为数组！")
+  }
+  else {
+    for(var i=0;i&lt;arr.length;i++) {
+      for (var j=i+1;j&lt;arr.length;j++) {
+        if(arr[i]===arr[j]) {
+          arr.splice(j,1)
+          j--;
+        }
+      }
+    }
+    return arr;
+  }
+}
+</code></pre>
+
+<p>附加了一个类型判断，这个去重函数就完美了。</p>
+
+<p>这里需要注意的是<code>j--</code>，它的作用就是在找到第一个重复的元素之后，让j的值“保持不变”，以便继续查找后面还有没有可能重复多次的元素。</p>
+
+<p>这个方法从始至终都只通过splice方法对原始的arr进行操作，而不需要额外定义其它暂存数组，并且保持了原数组中元素的初始顺序。</p>
+
+<p>全文完</p>
+
+      </section>
+      <dl class="new-cat">
+        <dt>文章列表</dt>
+        <dd><a href="/2013/09/30/stylus_6.html">stylus教程6</a></dd>
+        <dd><a href="/2013/09/30/stylus_5.html">stylus教程5</a></dd>
+        <dd><a href="/2013/09/29/stylus_4.html">stylus教程4</a></dd>
+        <dd><a href="/2013/09/29/stylus_3.html">stylus教程3</a></dd>
+        <dd><a href="/2013/09/25/palindrome.html">判断是否回文数的Javascript实现</a></dd>
+        <dd><a href="/2013/09/25/javascript_array_unique.html">使用JavaScript对数组去重</a></dd>
+        <dd><a href="/2013/09/25/secret_of_JavaScript_2.html">JavaScript循环中的引用2</a></dd>
+        <dd><a href="/2013/08/30/stylus_2.html">stylus教程2</a></dd>
+        <dd><a href="/2013/08/29/stylus_1.html">stylus教程1</a></dd>
+        <dd><a href="/2012/10/20/js_example.html">快速实现轮播效果</a></dd>
+        <dd><a href="/2012/10/01/html_doctype.html">HTML文档的标准模式和怪异模式</a></dd>
+        <dd><a href="/2012/09/03/http_header.html">Http Header简单介绍</a></dd>
+        <dd><a href="/2012/09/02/html_charset.html">给html设置charset属性</a></dd>
+        <dd><a href="/2012/09/01/secret_of_JavaScript.html">JavaScript循环中的引用</a></dd>
+        <dd><a href="/2012/08/25/use_JavaScript_operate_cookie.html">JavaScript操作cookie</a></dd>
+      </dl>
+    </div>
+  </body>
+</html>
