@@ -7,6 +7,7 @@ if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
     }
   }
   document.addEventListener("gesturestart", gestureStart, false);
+  document.getElementsByTagName("body")[0].style.backgroundImage = "none"
 }
 function gestureStart() {
   for (i=0; i<metas.length; i++) {
