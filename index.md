@@ -2,35 +2,22 @@
 layout: index
 title: Welcome to Allen's personal website
 ---
-Bio
+关于我
 ===============
-Hey, My english name is Allen Young.
-I'm a self-taught craftman, majoy in web and iOS developing fields living in Shanghai for a couple of years.
-I worked for over 20 websites like: 
 
-+ [Health care website KANCHUFANG](http://www.kanchufang.com/)
-+ [startup social media site ZUO](http://www.zuo.com/)
-+ [female only social media site WEIMI](http://www.weimi.com/)
-+ [online flower store HUALI](http://hua.li/)
-+ [BAUSCH Chinese official website](http://www.bausch.com.cn/)
-+ [famous video game news site PLU](http://www.plu.cn/)
-+ and ...
+学过新闻，做过见习记者。
 
-Also, I developed iOS app:
+经营过书报亭、倒卖过上网卡、和朋友合伙开办过英语培训班。
 
-+ [Health care app TRUSTED DOCTOR](https://itunes.apple.com/us/app/xing-ren-yi-sheng-yi-sheng-ban/id840842558?l=zh&ls=1&mt=8)
-+ [Shopify-like app DIANHEZI](https://itunes.apple.com/us/app/dian-he-zi/id953020389?ls=1&mt=8).
+2011年创办了[521搜学网](http://baike.baidu.com/link?url=kVsLkHqZjB1ITwRhY4BqBxKKN-_mYTTXzMtejsdZ_RAdNAThCOMmVy2vuIyiGzs5DF134mDeG_paOrsGA2WggK)，一周内与[同达考研](http://www.kaoyantd.com/)、[桑海教育](http://www.studyget.com/org-27.html)等5家教育培训机构签订了正式合作协议。
 
-Further more, I like nodejs and ruby on rails, I'm giving a big hug with them.
+做过网站、开发过app，现任[一下](http://www.yixia.co/)联合创始人、技术总监。
 
-I used countless tools and libraries like:
-	 
-	 git,slim,stylus,saas,less,backbone,underscore,coffee,jade,ejs,AFNetworking,FMDB,cocoapods......
+业余时间在[网易云课堂](http://study.163.com/u/7624337706)讲课。
 
-I made a lot of technical topics how-to videos on the Chinese famous site [Netease](http://study.163.com/u/7624337706) and [Youku](http://i.youku.com/u/UMTI4NTM5NDU0OA==) to help beginning learners.
+我的个人账号：[Github](https://github.com/Julyyq)、[Stackoverflow](http://stackoverflow.com/users/1843805/allen)。
 
-Recently, I'm learing design with using Sketch.
+你可以通过电子邮件联系我：[send](mailto:colorfuljuly@gmail.com)。
 
-You can find me through [github](https://github.com/julyyq) or [stackoverflow](http://stackoverflow.com/users/1843805/allen).
-
-Or send me email:&nbsp;&nbsp;&nbsp;[send](mailto:colorfuljuly@gmail.com).
+<br>
+[English Bio](/index-en.html)
