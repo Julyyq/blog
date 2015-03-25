@@ -15,7 +15,7 @@ title: Welcome to Allen's personal website
 
 -------------
 
-做过网站、开发过app，现任[一下](http://www.yixia.co/)联合创始人、技术总监。
+做过网站、开发过app，现任[一下](http://www.yixia.co/)技术总监。
 
 业余时间在[网易云课堂](http://study.163.com/u/7624337706)讲课。
 
