@@ -17,9 +17,15 @@ title: Welcome to Allen's personal website
 
 做过网站、开发过app，前[杏仁医生](http://xingren.com/)创始团队成员，现任[一下](http://www.yixia.co/)技术总监。
 
-业余时间在[网易云课堂](http://study.163.com/u/7624337706)讲课。
+业余时间在[网易云课堂](http://study.163.com/u/7624337706)做做视频。
 
-我的个人账号：[Github](https://github.com/Julyyq)、[Stackoverflow](http://stackoverflow.com/users/1843805/allen)。
+你可以通过下面这些网站找到我：
+
+[Github](https://github.com/Julyyq)
+
+<a href="http://stackoverflow.com/users/1843805/allen">
+<img src="http://stackoverflow.com/users/flair/1843805.png" width="208" height="58" alt="profile for Allen at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Allen at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
+</a>
 
 你可以通过电子邮件联系我：[send](mailto:colorfuljuly@gmail.com)。
 
