@@ -21,7 +21,14 @@ title: Welcome to Allen's personal website
 
 你可以通过下面这些网站找到我：
 
-[Github](https://github.com/Julyyq)
+<div class="github-flair">
+	<img src="https://avatars1.githubusercontent.com/u/2620575?v=3&s=460" width="50" height="50" />
+	<div class="info">
+		<p class="name"><span>Allen</span></p>
+		<p class="repos">55</p>
+		<p><span class="followers"><i></i>20</span>&nbsp;&nbsp;<span class="stars"><i></i>1595</span></p>
+	</div>	
+</div>
 
 <a href="http://stackoverflow.com/users/1843805/allen">
 <img src="http://stackoverflow.com/users/flair/1843805.png" width="208" height="58" alt="profile for Allen at Stack Overflow, Q&amp;A for professional and enthusiast programmers" title="profile for Allen at Stack Overflow, Q&amp;A for professional and enthusiast programmers">
@@ -31,3 +38,13 @@ title: Welcome to Allen's personal website
 
 <br>
 [English Bio](/index-en.html)
+
+<script type="text/javascript">
+	window.onload = function() {
+		var githubFlair = document.getElementsByClassName("github-flair")[0];
+		var githubFlairOnClick = function(e) {
+			location.href = "https://github.com/julyyq";
+		}
+		githubFlair.addEventListener("click", githubFlairOnClick, false);
+	}	
+</script>

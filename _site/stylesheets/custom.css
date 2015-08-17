@@ -27,3 +27,61 @@ dt,dd {
   max-width: 500px;
   margin: 0 auto;
 }
+.github-flair {
+  cursor: pointer;
+  overflow: hidden;
+  width: 206px;
+  height: 56px;
+  margin-bottom: 15px;
+  background-color: #eeeeee;
+  border: 1px solid #cccccc;
+  color: #0077cc;
+}
+.github-flair img {
+  float: left;
+  margin: 3px;
+}
+.github-flair .info {
+  float: right;
+  margin: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.github-flair p {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  line-height: 1.4;
+}
+.github-flair .name span {
+  display: inline-block;
+  padding-left: 20px;
+  background-image: url("https://github.com/favicon.ico");
+  background-size: 16px;
+  background-repeat: no-repeat;
+}
+.github-flair .repos {
+  color: black;
+  font-weight: bold;
+  font-size: 14px; 
+}
+.github-flair .followers {
+  color: #808185;
+}
+.github-flair .stars {
+  color: #808185;
+}
+.github-flair i {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 3px;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+.github-flair .followers i {
+  background-color: #c0c0c0;
+}
+.github-flair .stars i {
+  background-color: #cc9966;
+}
