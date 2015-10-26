@@ -15,7 +15,7 @@ title: Welcome to Allen's personal website
 
 -------------
 
-做过网站、开发过app，前[杏仁医生](http://xingren.com/)创始团队成员，现任[一下](http://www.yixia.co/)技术总监。
+做过网站、开发过app，前[杏仁医生](http://xingren.com/)创始团队成员，前[一下](http://www.yixia.co/)CTO。
 
 业余时间在[网易云课堂](http://study.163.com/u/7624337706)做做视频。
 
