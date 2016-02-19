@@ -19,6 +19,8 @@ title: Welcome to Allen's personal website
 
 业余时间在[网易云课堂](http://study.163.com/u/7624337706)做做视频。
 
+目前在写一本关于"Web前端开发"的书。
+
 你可以通过下面这些网站找到我：
 
 [Github](https://github.com/julyyq) 或 [StackOverflow](http://stackoverflow.com/users/1843805/allen)。
