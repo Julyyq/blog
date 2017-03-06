@@ -24,7 +24,7 @@
 
 <p>经典的问题，往往会产生出经典的方法，它就是这么的简短：</p>
 
-<pre><code>var unique = function(arr) {
+<div class="highlighter-rouge"><pre class="highlight"><code>var unique = function(arr) {
   if(toString.call(arr) !== '[object Array]') {
     throw Error("参数必须为数组！")
   }
@@ -41,10 +41,11 @@
   }
 }
 </code></pre>
+</div>
 
 <p>附加了一个类型判断，这个去重函数就完美了。</p>
 
-<p>这里需要注意的是<code>j--</code>，它的作用就是在找到第一个重复的元素之后，让j的值“保持不变”，以便继续查找后面还有没有可能重复多次的元素。</p>
+<p>这里需要注意的是<code class="highlighter-rouge">j--</code>，它的作用就是在找到第一个重复的元素之后，让j的值“保持不变”，以便继续查找后面还有没有可能重复多次的元素。</p>
 
 <p>这个方法从始至终都只通过splice方法对原始的arr进行操作，而不需要额外定义其它暂存数组，并且保持了原数组中元素的初始顺序。</p>
 

@@ -28,29 +28,31 @@
 
 <p>首先，我们需要多张用来切换的图片，其次，我们需要那些代表图片位置或者顺序的数字元素。</p>
 
-<p>在HTML中，像这种“很多相似元素”排列在一起的元素，我们可以使用<code>ul</code>标签，它代表无序列表。写出来类似于：</p>
+<p>在HTML中，像这种“很多相似元素”排列在一起的元素，我们可以使用<code class="highlighter-rouge">ul</code>标签，它代表无序列表。写出来类似于：</p>
 
-<pre><code>&lt;ul&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;ul&gt;
     &lt;li&gt;&lt;a href=""&gt;&lt;img src=""&gt;&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=""&gt;&lt;img src=""&gt;&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=""&gt;&lt;img src=""&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
+</div>
 
 <p>其中，li标签与ul标签是配套的，代表某一个列表元素。li标签内，img标签外嵌套了一层a标签，我们目的是希望图片本身能够被点击，就京东的例子而言，会跳转到一些商品或者活动的详情页面。基本的结构就是这样。</p>
 
 <p>同样，那些数字也是一种列表，我们同样可以使用ul标签来布局：</p>
 
-<pre><code>&lt;ul&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;ul&gt;
     &lt;li&gt;&lt;a href=""&gt;1&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=""&gt;2&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=""&gt;3&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
+</div>
 
 <p>我们看京东网站的轮播效果，无论何时都只是显示一张图片，同时隐藏其它图片，就好比有一个窗口，透过这个窗口我们可以轮流查看到不同的图片。所以，我们还需要这样一个“窗口元素”。</p>
 
-<pre><code>&lt;div class="viewport"&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;div class="viewport"&gt;
     &lt;ul class="imgs"&gt;
         &lt;li&gt;&lt;a href=""&gt;&lt;img src=""&gt;&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=""&gt;&lt;img src=""&gt;&lt;/a&gt;&lt;/li&gt;
@@ -63,6 +65,7 @@
     &lt;/ul&gt;
 &lt;/div&gt;
 </code></pre>
+</div>
 
 <p>这里ul外面的div即为窗口元素，并且赋予了其类为viewport,同时为了便于对两个列表赋予样式，我们分别给两个列表加了名为imgs和number的类。</p>
 
@@ -70,19 +73,20 @@
 
 <p>首先我们需要给“窗口”固定大小，并且将超出它可视范围的内容全部隐藏：</p>
 
-<pre><code>.viewport {
+<div class="highlighter-rouge"><pre class="highlight"><code>.viewport {
     position: relative;
     width: 670px;
     height:240px;
     overflow: hidden;
 }
 </code></pre>
+</div>
 
 <p>这里给它加了相对定位是为了等会给数字列表进行绝对定位。</p>
 
 <p>然后来写图片部分:</p>
 
-<pre><code>.imgs {
+<div class="highlighter-rouge"><pre class="highlight"><code>.imgs {
     overflow: hidden;
     zoom: 1;
 }
@@ -92,12 +96,13 @@
     height: 240px;
 }
 </code></pre>
+</div>
 
 <p>imgs内的样式都是为了清除浮动，因为我们需要给li元素向左的浮动，因为默认li元素是竖向排列的。</p>
 
 <p>接下来我们给那些数字赋予样式，并且让它定位到“窗口”的右下位置：</p>
 
-<pre><code>.number {
+<div class="highlighter-rouge"><pre class="highlight"><code>.number {
     position: absolute;
     right: 10px;
     bottom: 10px;
@@ -127,6 +132,7 @@
     background:#E4393C;
 }
 </code></pre>
+</div>
 
 <p>然后给上面的HTML填充示例图片，你应该看到的是这样的：</p>
 
@@ -138,15 +144,17 @@
 
 <p>首先在网页中引用这个JS文件:</p>
 
-<pre><code>&lt;script src="http://allenyoung.me/javascripts/slide.js"&gt;&lt;/script&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script src="http://allenyoung.me/javascripts/slide.js"&gt;&lt;/script&gt;
 </code></pre>
+</div>
 
 <p>然后我们给viewport元素新加一个class为slide-element,这是一个空的类，目的只是为了选中需要展现轮播效果的元素。这个JS脚本会自动获取class为slide-element的元素，为它赋予轮播功能。</p>
 
 <p>这个脚本是基于jQuery的，所以同时，我们还需要在引入上面那个脚本之前先引入jQuery文件。</p>
 
-<pre><code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"&gt;&lt;/script&gt;
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"&gt;&lt;/script&gt;
 </code></pre>
+</div>
 
 <p>到此，我们已经实现了一个最简单的轮播图效果。</p>
 

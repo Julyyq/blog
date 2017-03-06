@@ -25,7 +25,7 @@
 <h2 id="stylus">stylus简介</h2>
 <p>stylus借鉴了sass的一些思想，变量/混合/函数/继承/扩展/插值等等特性在stylus里都有，但是在写法上，stylus追求极致的简单，花括号/冒号/分号以及一些逗号统统都可以省略，变量也不需要像less一样以@开头，或者向sass一样以$开头，看起来就像普通的字符串一样，甚至于调用混合时的参数的小括号也可以省略。这样的特性之下，使得stylus的结构看起来更加清晰。</p>
 
-<pre><code>border-radius()
+<div class="highlighter-rouge"><pre class="highlight"><code>border-radius()
   -webkit-border-radius arguments
   -moz-border-radius arguments
   border-radius arguments
@@ -49,22 +49,24 @@ a.button {
   border-radius: 5px;
 }
 </code></pre>
+</div>
 
 <p>stylus支持现代编程语言的函数</p>
 
-<pre><code>sum(nums...)
+<div class="highlighter-rouge"><pre class="highlight"><code>sum(nums...)
   sum = 0
   sum += n for n in nums
   
 sum(1,2,3,4)
 // =&gt; 10
 </code></pre>
+</div>
 
 <p>这是什么概念？这意味着写CSS已经和真正的编程越来越接近，stylus可以变得非常强大！</p>
 
 <p>字符串插值。在stylus中，字符串插值不需要特殊的写法：</p>
 
-<pre><code>fonts = helvetica, arial, sans-serif
+<div class="highlighter-rouge"><pre class="highlight"><code>fonts = helvetica, arial, sans-serif
 
 body {
   padding: 50px;
@@ -77,82 +79,93 @@ body {
   font: 14px/1.4 helvetica, arial, sans-serif;
 }
 </code></pre>
+</div>
 
-<p>你只需要简单的将变量放到你想放到的位置就行了。而在less和sass中，你却不得不将变量包裹在<code>@{}</code>或者<code>#{}</code>中，而且，stylus还支持更加强大的选择器插值和属性插值，有关插值的具体内容会在随后的文章中介绍。</p>
+<p>你只需要简单的将变量放到你想放到的位置就行了。而在less和sass中，你却不得不将变量包裹在<code class="highlighter-rouge">@{}</code>或者<code class="highlighter-rouge">#{}</code>中，而且，stylus还支持更加强大的选择器插值和属性插值，有关插值的具体内容会在随后的文章中介绍。</p>
 
 <p>stylus使用node编写,要使用stylus,只需要在terminal中运行:</p>
 
-<pre><code>npm install stylus
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install stylus
 </code></pre>
+</div>
 
 <p>如果你要全局使用stylus命令，则运行:</p>
 
-<pre><code>npm install -g stylus
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install -g stylus
 </code></pre>
+</div>
 
 <h2 id="section">选择器</h2>
 <p>stylus支持基于缩进的写法，但同时也支持css风格的写法，也就是说，花括号/冒号/分号/逗号都是可选的。</p>
 
 <p>多个选择器可以合在一起写：</p>
 
-<pre><code>textarea, input
+<div class="highlighter-rouge"><pre class="highlight"><code>textarea, input
   border 1px solid #eee
 </code></pre>
+</div>
 
 <p>你也可以分两行以省略逗号：</p>
 
-<pre><code>textarea 
+<div class="highlighter-rouge"><pre class="highlight"><code>textarea 
 input
   border 1px solid #eee
 </code></pre>
+</div>
 
 <p>但是有一处地方需要注意：</p>
 
-<pre><code>div p
+<div class="highlighter-rouge"><pre class="highlight"><code>div p
 input
   border: 1px solid #ccc
 </code></pre>
+</div>
 
-<p>这样的写法有两种可能:<code>p</code>是<code>div</code>的属性值,<code>div p</code>是一个选择器。虽然我们的意图是后者，但是stylus的编译器无法区分两者。所以在这种情况下，换行的逗号是必须的：</p>
+<p>这样的写法有两种可能:<code class="highlighter-rouge">p</code>是<code class="highlighter-rouge">div</code>的属性值,<code class="highlighter-rouge">div p</code>是一个选择器。虽然我们的意图是后者，但是stylus的编译器无法区分两者。所以在这种情况下，换行的逗号是必须的：</p>
 
-<pre><code>div p,
+<div class="highlighter-rouge"><pre class="highlight"><code>div p,
 input
   border: 1px solid #ccc
 </code></pre>
+</div>
 
 <h2 id="section-1">对父选择器的引用</h2>
-<p>和less和sass一样，对父选择器的引用都是通过<code>&amp;</code>符号来实现。</p>
+<p>和less和sass一样，对父选择器的引用都是通过<code class="highlighter-rouge">&amp;</code>符号来实现。</p>
 
-<pre><code>a
+<div class="highlighter-rouge"><pre class="highlight"><code>a
   color: #333333
   &amp;.cur
     color: #000000
 </code></pre>
+</div>
 
-<h2 id="section-2"><code>-</code>号</h2>
-<p><code>-</code>号有‘负号’和’减法运算符’两种含义。在stylus中的混合或者函数，默认<code>-</code>号表示减法运算符，如果你要表示负数，那么可以用小括号包裹起来：</p>
+<h2 id="section-2"><code class="highlighter-rouge">-</code>号</h2>
+<p><code class="highlighter-rouge">-</code>号有‘负号’和’减法运算符’两种含义。在stylus中的混合或者函数，默认<code class="highlighter-rouge">-</code>号表示减法运算符，如果你要表示负数，那么可以用小括号包裹起来：</p>
 
-<pre><code>pad(n)
+<div class="highlighter-rouge"><pre class="highlight"><code>pad(n)
   padding (- n)
 
 body
   pad(5px)
 </code></pre>
+</div>
 
 <p>当然，只有在函数或者混合中你才需要这样做，在其它地方你可以直接写：</p>
 
-<pre><code>body
+<div class="highlighter-rouge"><pre class="highlight"><code>body
   padding -5px
 </code></pre>
+</div>
 
 <h2 id="section-3">特殊样式</h2>
-<p>有一些不“普通”的样式，比如IE的一些滤镜。stylus编译器无法解释，这种情况下，你可以使用<code>unquote</code>方法将这些特殊的值包裹起来：</p>
+<p>有一些不“普通”的样式，比如IE的一些滤镜。stylus编译器无法解释，这种情况下，你可以使用<code class="highlighter-rouge">unquote</code>方法将这些特殊的值包裹起来：</p>
 
-<pre><code>filter unquote('progid:DXImageTransform.Microsoft.BasicImage(rotation=1)')
+<div class="highlighter-rouge"><pre class="highlight"><code>filter unquote('progid:DXImageTransform.Microsoft.BasicImage(rotation=1)')
 
 //编译后：
 filter progid:DXImageTransform.Microsoft.BasicImage(rotation=1)
 </code></pre>
+</div>
 
       </section>
       <dl class="new-cat">

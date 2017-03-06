@@ -23,7 +23,7 @@
 <h2 id="section">变量：</h2>
 <p>先来看一个stylus中变量的例子：</p>
 
-<pre><code>font-size = 14px
+<div class="highlighter-rouge"><pre class="highlight"><code>font-size = 14px
 
 body
   font font-size Arial, sans-serif
@@ -33,12 +33,13 @@ body {
   font: 14px Arial, sans-serif;
 }
 </code></pre>
+</div>
 
-<p>在stylus中，定义变量就像在其它编程语言中一样直接用<code>=</code>号赋值即可，并不需要以<code>@</code>或者<code>$</code>为前缀开头。</p>
+<p>在stylus中，定义变量就像在其它编程语言中一样直接用<code class="highlighter-rouge">=</code>号赋值即可，并不需要以<code class="highlighter-rouge">@</code>或者<code class="highlighter-rouge">$</code>为前缀开头。</p>
 
 <p>同样的，变量可以包含变量：</p>
 
-<pre><code>font-size = 14px
+<div class="highlighter-rouge"><pre class="highlight"><code>font-size = 14px
 font = font-size "Lucida Grande", Arial
 
 body
@@ -49,15 +50,16 @@ body {
   font: 14px "Lucida Grande", Arial sans-serif;
 }
 </code></pre>
+</div>
 
-<p>同样，如果你想给stylus的变量名或者函数名加<code>$</code>前缀，也是没问题的。但是<code>@</code>和<code>_</code>是不允许的。</p>
+<p>同样，如果你想给stylus的变量名或者函数名加<code class="highlighter-rouge">$</code>前缀，也是没问题的。但是<code class="highlighter-rouge">@</code>和<code class="highlighter-rouge">_</code>是不允许的。</p>
 
 <h3 id="section-1">属性查找：</h3>
 
 <p>这个特性是less和sass所没有的：在没有给变量指定值的情况下，stylus会以“冒泡”的方式搜索变量可能的值,如果没有查找到则返回null。
 这个特性的一个典型应用：</p>
 
-<pre><code>#logo
+<div class="highlighter-rouge"><pre class="highlight"><code>#logo
   position: absolute
   top: 50%
   left: 50%
@@ -66,10 +68,11 @@ body {
   margin-left: -(w / 2)
   margin-top: -(h / 2)
 </code></pre>
+</div>
 
 <p>这里想让#logo类的元素上下左右居中，所以margin-left和margin-top的值都依赖于width和height的值。首先，给width和height分别定义了150px和80px，为了能够让这两个值被后面的margin-left和margin-top引用到，所以让w=150px,h=80px，于是在后面的属性中就可以通过w和h来取得150px和80px这两个值。如果没有这种特性，那么我们不得不在这个类之外定义w和h两个变量:</p>
 
-<pre><code>w = 150px
+<div class="highlighter-rouge"><pre class="highlight"><code>w = 150px
 h = 80px
 #logo
   position: absolute
@@ -80,6 +83,7 @@ h = 80px
   margin-left: -(w / 2)
   margin-top: -(h / 2)
 </code></pre>
+</div>
 
 <p>这两种写法，哪种更好一目了然。</p>
 
@@ -87,7 +91,7 @@ h = 80px
 
 <p>再进一步，也是贯彻stylus极致精简的原则，stylus中可以使用@来改写上面的例子：</p>
 
-<pre><code>#logo
+<div class="highlighter-rouge"><pre class="highlight"><code>#logo
   position: absolute
   top: 50%
   left: 50%
@@ -96,12 +100,13 @@ h = 80px
   margin-left: -(@width / 2)
   margin-top: -(@height / 2)
 </code></pre>
+</div>
 
 <p>在这个例子中，甚至省去了定义变量这个步骤！</p>
 
 <p>这里@的用法是不是看起来有点像coffee中@的用法？@是this的简写，this是#logo这个类的引用，#logo的样式属性都变成了对象属性，通过@width，@top等我们可以取到特定属性对应的值。貌似存在下面这么一个东西来供我们使用：</p>
 
-<pre><code>@ = {
+<div class="highlighter-rouge"><pre class="highlight"><code>@ = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -109,12 +114,13 @@ h = 80px
   height: '80px'
 }
 </code></pre>
+</div>
 
 <p>确实，stylus的这种特性原理就是如此。</p>
 
 <p>这种特性的另外一种应用场景是条件定义属性：</p>
 
-<pre><code>position()
+<div class="highlighter-rouge"><pre class="highlight"><code>position()
   position: arguments
   z-index: 1 unless @z-index
 
@@ -125,10 +131,11 @@ h = 80px
 #logo2
   position: absolute
 </code></pre>
+</div>
 
 <p>前面提过@是以冒泡的方式来查找属性值：</p>
 
-<pre><code>body
+<div class="highlighter-rouge"><pre class="highlight"><code>body
   color: red
   ul
     li
@@ -148,17 +155,18 @@ body ul li a {
 }
 //a的color是blue(#00f)而不是red(#f00)。
 </code></pre>
+</div>
 
 <p>需要注意的是，stylus只会查找到根选择器(在上面的例子中是body),如果找到就返回第一个匹配的值，如果没找到就返回null。</p>
 
 <h2 id="section-2">插值：</h2>
 <p>教程1中讲了在stylus中字符串插值并没有特别之处，只需要将变量放到你想放的位置就可以。现在，来看看stylus中的其它类型的插值。</p>
 
-<p>在stylus中使用<code>{}</code>包裹表达式来实现插值。</p>
+<p>在stylus中使用<code class="highlighter-rouge"><span class="p">{}</span></code>包裹表达式来实现插值。</p>
 
 <h3 id="section-3">标识符插值</h3>
 
-<pre><code>vendor(prop, args)
+<div class="highlighter-rouge"><pre class="highlight"><code>vendor(prop, args)
   -webkit-{prop} args
   -moz-{prop} args
   {prop} args
@@ -179,12 +187,13 @@ button {
   border-radius: 1px 2px/3px 4px;
 }
 </code></pre>
+</div>
 
 <p>通过这种方式，可以非常方便的扩展属性。这个特性已经和编程中的参数传值是一样的了。</p>
 
 <h3 id="section-4">选择器插值</h3>
 
-<pre><code>table
+<div class="highlighter-rouge"><pre class="highlight"><code>table
   for row in 1 2 3 4 5
     tr:nth-child({row})
       height: 10px * row
@@ -206,6 +215,7 @@ table tr:nth-child(5) {
   height: 50px;
 }
 </code></pre>
+</div>
 
 <p>这个特性让我们可以非常容易去的给多个元素设置不同的属性。</p>
 

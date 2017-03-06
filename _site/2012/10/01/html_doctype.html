@@ -30,7 +30,7 @@
 
 <p>怪异模式其实并不怪异，它其实只是为了向后兼容而将整个html文档不以标准来进行渲染，而是以浏览器自己私有的一套规则来解析。那么什么情况下会触发怪异模式呢？</p>
 
-<pre><code>1. 文件类型描述缺失或不完整时;
+<div class="highlighter-rouge"><pre class="highlight"><code>1. 文件类型描述缺失或不完整时;
 2. 遇到一个HTML 3或者更早的文档时；
 3. 使用HTML 4.0 Transitional或Frameset的文件类型描述且系统标识符（URI）不存在时；
 4. 在DOCTYPE声明之前出现SGML注释或者其它无法识别的内容时；
@@ -38,6 +38,7 @@
 6. 注释符相遇时出现末尾文字重复；
 7. Internet Explorer 6也会在DOCTYPE声明之前出现XML声明时使用quirks模式。
 </code></pre>
+</div>
 
 <p>这里有一点需要注意一下，就是一个html页面的最开始，不要写注释，否则根据第4条就会触发怪异模式。</p>
 

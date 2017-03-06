@@ -30,12 +30,13 @@
 
 <p>将args合并到expr中。</p>
 
-<pre><code>nums = 1 2
+<div class="highlighter-rouge"><pre class="highlight"><code>nums = 1 2
 push(nums, 3, 4, 5)
 
 nums
 // =&gt; 1 2 3 4 5
 </code></pre>
+</div>
 
 <p>别名是append()。</p>
 
@@ -43,12 +44,13 @@ nums
 
 <p>将args中的元素依此插入到expr前面。</p>
 
-<pre><code>nums = 4 5
+<div class="highlighter-rouge"><pre class="highlight"><code>nums = 4 5
 unshift(nums, 3, 2, 1)
 
 nums
 // =&gt; 1 2 3 4 5
 </code></pre>
+</div>
 
 <p>别名prepend()。</p>
 
@@ -56,19 +58,21 @@ nums
 
 <p>返回键值对的属性名称。</p>
 
-<pre><code>pairs = (one 1) (two 2) (three 3)
+<div class="highlighter-rouge"><pre class="highlight"><code>pairs = (one 1) (two 2) (three 3)
 keys(pairs)
 // =&gt; one two three
 </code></pre>
+</div>
 
 <h4 id="valuespairs">values(pairs)</h4>
 
 <p>返回键值对的属性值。</p>
 
-<pre><code>pairs = (one 1) (two 2) (three 3)
+<div class="highlighter-rouge"><pre class="highlight"><code>pairs = (one 1) (two 2) (three 3)
 values(pairs)
 // =&gt; 1 2 3
 </code></pre>
+</div>
 
 <h4 id="typeofnode">typeof(node)</h4>
 
@@ -92,7 +96,7 @@ values(pairs)
 
 <p>设置或返回unit的类型。</p>
 
-<pre><code>unit(10)
+<div class="highlighter-rouge"><pre class="highlight"><code>unit(10)
 // =&gt; ''
 
 unit(15in)
@@ -104,12 +108,13 @@ unit(15%, 'px')
 unit(15%, px)
 // =&gt; 15px
 </code></pre>
+</div>
 
 <h4 id="matchpattern-string">match(pattern, string)</h4>
 
 <p>测试string是否符合pattern。</p>
 
-<pre><code>match('^foo(bar)?', foo)
+<div class="highlighter-rouge"><pre class="highlight"><code>match('^foo(bar)?', foo)
 match('^foo(bar)?', foobar)
 // =&gt; true
 
@@ -120,6 +125,7 @@ match('^foo(bar)?', 'foobar')
 match('^foo(bar)?', 'bar')
 // =&gt; false
 </code></pre>
+</div>
 
 <h4 id="base-convertnum-base-width">base-convert(num, base, width)</h4>
 
@@ -129,7 +135,7 @@ match('^foo(bar)?', 'bar')
 
 <p>这和javascript中的join函数一样。</p>
 
-<pre><code>join(' ', 1 2 3)
+<div class="highlighter-rouge"><pre class="highlight"><code>join(' ', 1 2 3)
 // =&gt; "1 2 3"
 
 join(',', 1 2 3)
@@ -144,6 +150,7 @@ join(', ', foo, bar, baz)
 join(', ', 1 2, 3 4, 5 6)
 // =&gt; "1 2, 3 4, 5 6"
 </code></pre>
+</div>
 
 <h4 id="unquotestr--ident">unquote(str | ident)</h4>
 
@@ -151,9 +158,9 @@ join(', ', 1 2, 3 4, 5 6)
 
 <h4 id="sfmt-">s(fmt, …)</h4>
 
-<p>s()函数和unquote()很像，但是s()像C语言中的sprintf接受格式化的字符串。目前支持的分类符号是<code>%s</code>。</p>
+<p>s()函数和unquote()很像，但是s()像C语言中的sprintf接受格式化的字符串。目前支持的分类符号是<code class="highlighter-rouge">%s</code>。</p>
 
-<pre><code>s('bar()');
+<div class="highlighter-rouge"><pre class="highlight"><code>s('bar()');
 // =&gt; bar()
 
 s('bar(%s)', 'baz');
@@ -174,21 +181,23 @@ s('bar(%Z)', 15px);
 s('bar(%s, %s)', 15px);
 // =&gt; bar(15px, null)
 </code></pre>
+</div>
 
 <h4 id="operateop-left-right">operate(op, left, right)</h4>
 
 <p>left和right分别是左右操作数,op为操作符。</p>
 
-<pre><code>op = '+'
+<div class="highlighter-rouge"><pre class="highlight"><code>op = '+'
 operate(op, 15, 5)
 // =&gt; 20
 </code></pre>
+</div>
 
 <h4 id="lengthexpr">length([expr])</h4>
 
 <p>返回expr的长度。</p>
 
-<pre><code>length((1 2 3 4))
+<div class="highlighter-rouge"><pre class="highlight"><code>length((1 2 3 4))
 // =&gt; 4
 
 length((1 2))
@@ -209,12 +218,13 @@ length(1)
 length()
 // =&gt; 0
 </code></pre>
+</div>
 
 <h4 id="lastexpr">last(expr)</h4>
 
 <p>返回表达式上一次的值。</p>
 
-<pre><code>nums = 1 2 3
+<div class="highlighter-rouge"><pre class="highlight"><code>nums = 1 2 3
 last(nums)
 last(1 2 3)
 // =&gt; 3
@@ -223,6 +233,7 @@ list = (one 1) (two 2) (three 3)
 last(list)
 // =&gt; (three 3)
 </code></pre>
+</div>
 
 <h4 id="image-sizepath">image-size(path)</h4>
 
@@ -232,21 +243,23 @@ last(list)
 
 <p>给最近的块增加属性。</p>
 
-<pre><code>something()
+<div class="highlighter-rouge"><pre class="highlight"><code>something()
   add-property('bar', 1 2 3)
   s('bar')
 
 body
   foo: something()
 </code></pre>
+</div>
 
 <p>编译为：</p>
 
-<pre><code>body {
+<div class="highlighter-rouge"><pre class="highlight"><code>body {
   bar: 1 2 3;
   foo: bar;
 }
 </code></pre>
+</div>
 
 <p>全文完</p>
 
