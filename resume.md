@@ -51,7 +51,7 @@ __2016年5月－至今__：上海琪帆网络科技有限公司
 创始人，主导“氧气文学”、“氧气写作”等系列产品的研发。
 
 
-#### 其它相关项目：
+#### 其它：
 
-[我奇定制](http://woqi.me/)、[花里](http://hua.li/)、[Swift-Tricks.cn](http://www.swift-tricks.cn/)等
+慕课网签约讲师。Lead过的其它项目有：[我奇定制](http://woqi.me/)、[花里](http://hua.li/)、[Swift-Tricks.cn](http://www.swift-tricks.cn/)等
 

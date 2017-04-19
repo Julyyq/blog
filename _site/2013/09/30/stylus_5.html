@@ -18,7 +18,7 @@
   <body>
     <div class="wrapper">
       <section>
-        <h1 id="stylus5">stylus教程5</h1>
+        <h1 id="stylus教程5">stylus教程5</h1>
 
 <p>stylus中的混合和函数的定义方式完全一样，那么混合和函数的区别在哪里呢？答案是函数可以有返回值。</p>
 
@@ -33,7 +33,7 @@ body {
 </code></pre>
 </div>
 
-<h3 id="section">变量的默认值</h3>
+<h3 id="变量的默认值">变量的默认值</h3>
 
 <p>在定义混合或者函数的时候，向less和sass一样，可以给变量赋予一个默认值，这个默认值也可以是一个有返回值的函数。</p>
 
@@ -51,7 +51,7 @@ add(a, b = unit(a, px))
 </code></pre>
 </div>
 
-<h3 id="section-1">给参数命名</h3>
+<h3 id="给参数命名">给参数命名</h3>
 
 <p>stylus的这个特性的方便之处在于，允许你忘记参数的顺序。</p>
 
@@ -62,7 +62,7 @@ subtract(b: 10, a: 25)
 </code></pre>
 </div>
 
-<h3 id="section-2">返回多个值</h3>
+<h3 id="返回多个值">返回多个值</h3>
 
 <p>在stylus中，就像可以给函数赋多个参数一样，可以让函数返回多个值。</p>
 
@@ -83,7 +83,7 @@ sizes()
 
 <p>在stylus中，这样写可以理解为a是b的值，所以为了避免这种解释错误，可以写成<code class="highlighter-rouge">(b a)</code>或者使用<code class="highlighter-rouge">return</code>关键字。</p>
 
-<h3 id="section-3">给函数重命名</h3>
+<h3 id="给函数重命名">给函数重命名</h3>
 
 <p>在stylus中，给函数重命名就是如此的简单：</p>
 
@@ -94,7 +94,7 @@ plus(1, 2)
 </code></pre>
 </div>
 
-<h3 id="section-4">将函数作为参数传递</h3>
+<h3 id="将函数作为参数传递">将函数作为参数传递</h3>
 
 <p>在JavaScript中，函数是第一类的，所以可以把函数当做参数来传递，在stylus中，同样可以使用如此强大的特性：</p>
 
