@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>如何自己搭建shadowsocks</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <meta name="keyword" content="VPN,shadowsocks,v2ray,vmess,brook,shadowrocket,影梭,翻墙,梯子,科学上网,防火墙,gfw">
+    <meta name="description" content="如何自己搭建shadowsocks?">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="如何自己搭建shadowsocks">如何自己搭建shadowsocks?</h1>
+
+<p>Shadowsocks是一种基于Socks5代理方式的加密传输协议，支持安卓、iOS、Windows和苹果macOS操作系统, 甚至支持OpenWRT（路由器翻墙解决方案），可以说是现在市面上支持平台最全面的协议了。</p>
+
+<p>从2017年开始，翻墙越来越难，很多付费服务也不能使用了，所以有时候，自己搭建一个梯子，也是一种不错的选择。这种做法的优点就是比较稳定，缺点一是贵，因为要自己独立买台VPS，还要考虑到速度不能太差，流量不能太少，所以价格自然很难便宜。二是可能需要自己一直维护，有时候会比较耗费精力。</p>
+
+<p>其实自己搭建shadowsocks非常简单，比如你的系统是ubuntu，那么首先更新软件包源：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get update
+</code></pre></div>
+
+<p>接着，下载python的包管理工具pip:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>apt-get install python-pip
+</code></pre></div>
+
+<p>然后使用pip来一键安装shadowsocks:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pip install shadowsocks
+</code></pre></div>
+
+<p>到此为止，你的shadowsocks其实就已经安装好了，就是这也么简单。</p>
+
+<p>接下来，需要在服务器启动shadowsocks服务：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo ssserver -p 端口号 -k 密码 -m 加密方式 --user nobody -d start
+</code></pre></div>
+
+<p>比如你的端口号是443，密码是12345678，加密方式是aes-256-cfb，那么启动命令就是：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo ssserver -p 443 -k 12345678 -m aes-256-cfb --user nobody -d start
+</code></pre></div>
+
+<p>现在，你的服务器已经开始运行shadowsocks了，你只需要安装客户端，就可以连接你的服务器，从而可以上google、facebook、youtube等网站了。</p>
+
+<p>常用的客户端如下：</p>
+
+<p>iOS: <a href="https://itunes.apple.com/us/app/shadowrocket/id932747118?mt=8">Shadowrocket</a></p>
+
+<p>安卓: <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks">Shadowsocks</a></p>
+
+<p>Windows: <a href="https://github.com/shadowsocks/shadowsocks-windows/releases/download/4.0.9/Shadowsocks-4.0.9.zip">Shadowsocks-Windows</a></p>
+
+<p>Mac OS X: <a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases/download/v1.7.1/ShadowsocksX-NG.1.7.1.zip">ShadowsocksX-NG</a></p>
+
+<h2 id="其它一些小众的翻墙服务">其它一些小众的翻墙服务</h2>
+
+<p>如果不能翻墙会影响到你的工作或者生活，也就是说翻墙对于你是必须的，那么可以建议自己搭建一台，然后再买个小众点儿的翻墙服务，为什么要小众？因为小众，所以才稳定。</p>
+
+<p>介绍几个自己用了挺久的非常小众的服务：</p>
+
+<p><a href="https://www.rixcloud.com/">rixcloud</a> :</p>
+
+<p>比较低调，速度快的一个云服务，流量价格皆可以选择，可以看Netflix和YoutubeTV等。</p>
+
+<p><a href="http://babydriver.me/">babydriver</a> :</p>
+
+<p>很潮的一个网站，不但支持VPN和shadowsocks，还支持最新的V2ray，V2ray的VIP套餐支持NetFlix和YoutubeTV等。</p>
+
+<p><a href="https://vpnso.com/main.php">vpnso</a> :</p>
+
+<p>vpnso支持普通VPN和shadowsocks，最开始用的时候才50块钱一年，现在最便宜的要200一年，足足涨了4倍（后悔当时没多买几年）。有多条线路可以选择，当然一般选择亚洲的节点，比如日本。</p>
+
+<p>全文完</p>
+
+      </section>
+    </div>
+  </body>
+</html>

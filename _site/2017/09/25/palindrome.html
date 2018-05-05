@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>判断是否回文数的Javascript实现</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="判断是否回文数的javascript实现">判断是否回文数的Javascript实现</h1>
+
+<p>回文数，简而言之就是正着读和倒着读一样的数字。具体可以参考维基百科<a href="http://en.wikipedia.org/wiki/Palindromic_number">http://en.wikipedia.org/wiki/Palindromic_number</a>。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>var palindrome = function(num) {
+  if(typeof num !== "number") throw Error("参数必须为数字！")
+  var compare = num.toString(),
+       length = compare.length;
+  if(length%2 == 0) return false;
+  var loop = (length+1)/2;
+  for(var i=0;i&lt;loop;i++) {
+    if(compare.charAt(i) !== compare.charAt(length-1-i)) {
+      return false;
+    }
+  }
+  return true;
+}
+</code></pre></div>
+
+<p>这里主要用到了charAt方法，这是字符串的一个方法，而且数字是没有length属性的，所以一开始将数字转换成了字符串，以方便进行检测。</p>
+
+<p>全文完</p>
+
+      </section>
+    </div>
+  </body>
+</html>

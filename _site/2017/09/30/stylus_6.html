@@ -1,0 +1,258 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>stylus教程6</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="stylus教程6">stylus教程6</h1>
+
+<h3 id="内置函数">内置函数</h3>
+
+<p>和less以及sass一样，stylus也内置了很多函数，这些内置函数让stylus可以写的非常复杂。</p>
+
+<p>这篇文章将挑选部分内置函数来探讨，全部内置函数请访问stylus官方文档<a href="http://learnboost.github.io/stylus/docs/bifs.html">http://learnboost.github.io/stylus/docs/bifs.html</a>。</p>
+
+<h4 id="pushexpr-args">push(expr, args…)</h4>
+
+<p>将args合并到expr中。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nums = 1 2
+push(nums, 3, 4, 5)
+
+nums
+// =&gt; 1 2 3 4 5
+</code></pre></div>
+
+<p>别名是append()。</p>
+
+<h4 id="unshiftexpr-args">unshift(expr, args…)</h4>
+
+<p>将args中的元素依此插入到expr前面。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nums = 4 5
+unshift(nums, 3, 2, 1)
+
+nums
+// =&gt; 1 2 3 4 5
+</code></pre></div>
+
+<p>别名prepend()。</p>
+
+<h4 id="keyspairs">keys(pairs)</h4>
+
+<p>返回键值对的属性名称。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pairs = (one 1) (two 2) (three 3)
+keys(pairs)
+// =&gt; one two three
+</code></pre></div>
+
+<h4 id="valuespairs">values(pairs)</h4>
+
+<p>返回键值对的属性值。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>pairs = (one 1) (two 2) (three 3)
+values(pairs)
+// =&gt; 1 2 3
+</code></pre></div>
+
+<h4 id="typeofnode">typeof(node)</h4>
+
+<p>以字符串形式返回node的类型。</p>
+
+<p>type(12)
+// =&gt; ‘unit’</p>
+
+<p>typeof(12)
+// =&gt; ‘unit’</p>
+
+<p>typeof(#fff)
+// =&gt; ‘rgba’</p>
+
+<p>type-of(#fff)
+// =&gt; ‘rgba’</p>
+
+<p>别名有type和type-of。</p>
+
+<h4 id="unitunit-type">unit(unit[, type])</h4>
+
+<p>设置或返回unit的类型。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>unit(10)
+// =&gt; ''
+
+unit(15in)
+// =&gt; 'in'
+
+unit(15%, 'px')
+// =&gt; 15px
+
+unit(15%, px)
+// =&gt; 15px
+</code></pre></div>
+
+<h4 id="matchpattern-string">match(pattern, string)</h4>
+
+<p>测试string是否符合pattern。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>match('^foo(bar)?', foo)
+match('^foo(bar)?', foobar)
+// =&gt; true
+
+match('^foo(bar)?', 'foo')
+match('^foo(bar)?', 'foobar')
+// =&gt; true
+
+match('^foo(bar)?', 'bar')
+// =&gt; false
+</code></pre></div>
+
+<h4 id="base-convertnum-base-width">base-convert(num, base, width)</h4>
+
+<p>num为十进制数字，base为目标进制，范围是2到36，width代表转换后的位数，默认值是2。</p>
+
+<h4 id="joindelim-vals">join(delim, vals…)</h4>
+
+<p>这和javascript中的join函数一样。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>join(' ', 1 2 3)
+// =&gt; "1 2 3"
+
+join(',', 1 2 3)
+// =&gt; "1,2,3"
+
+join(', ', foo bar baz)
+// =&gt; "foo, bar, baz"
+
+join(', ', foo, bar, baz)
+// =&gt; "foo, bar, baz"
+
+join(', ', 1 2, 3 4, 5 6)
+// =&gt; "1 2, 3 4, 5 6"
+</code></pre></div>
+
+<h4 id="unquotestr--ident">unquote(str | ident)</h4>
+
+<p>将str解释为字面量。</p>
+
+<h4 id="sfmt-">s(fmt, …)</h4>
+
+<p>s()函数和unquote()很像，但是s()像C语言中的sprintf接受格式化的字符串。目前支持的分类符号是<code class="highlighter-rouge">%s</code>。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>s('bar()');
+// =&gt; bar()
+
+s('bar(%s)', 'baz');
+// =&gt; bar("baz")
+
+s('bar(%s)', baz);
+// =&gt; bar(baz)
+
+s('bar(%s)', 15px);
+// =&gt; bar(15px)
+
+s('rgba(%s, %s, %s, 0.5)', 255, 100, 50);
+// =&gt; rgba(255, 100, 50, 0.5)
+
+s('bar(%Z)', 15px);
+// =&gt; bar(%Z)
+
+s('bar(%s, %s)', 15px);
+// =&gt; bar(15px, null)
+</code></pre></div>
+
+<h4 id="operateop-left-right">operate(op, left, right)</h4>
+
+<p>left和right分别是左右操作数,op为操作符。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>op = '+'
+operate(op, 15, 5)
+// =&gt; 20
+</code></pre></div>
+
+<h4 id="lengthexpr">length([expr])</h4>
+
+<p>返回expr的长度。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>length((1 2 3 4))
+// =&gt; 4
+
+length((1 2))
+// =&gt; 2
+
+length((1))
+// =&gt; 1
+
+length(())
+// =&gt; 0
+
+length(1 2 3)
+// =&gt; 3
+
+length(1)
+// =&gt; 1
+
+length()
+// =&gt; 0
+</code></pre></div>
+
+<h4 id="lastexpr">last(expr)</h4>
+
+<p>返回表达式上一次的值。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nums = 1 2 3
+last(nums)
+last(1 2 3)
+// =&gt; 3
+
+list = (one 1) (two 2) (three 3)
+last(list)
+// =&gt; (three 3)
+</code></pre></div>
+
+<h4 id="image-sizepath">image-size(path)</h4>
+
+<p>返回图片的宽和高。</p>
+
+<h4 id="add-propertyname-expr">add-property(name, expr)</h4>
+
+<p>给最近的块增加属性。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>something()
+  add-property('bar', 1 2 3)
+  s('bar')
+
+body
+  foo: something()
+</code></pre></div>
+
+<p>编译为：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>body {
+  bar: 1 2 3;
+  foo: bar;
+}
+</code></pre></div>
+
+<p>全文完</p>
+
+      </section>
+    </div>
+  </body>
+</html>

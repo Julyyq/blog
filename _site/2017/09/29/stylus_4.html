@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>stylus教程4</title>
+
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" href="/stylesheets/pygment_trac.css">
+    <link rel="stylesheet" href="/stylesheets/custom.css">
+    <meta name="viewport" content="target-densitydpi=320,width=480,user-scalable=no">
+    <meta content="True" name="HandheldFriendly">
+    <meta content="480" name="MobileOptimized">
+    <meta name="keyword" content="">
+    <meta name="description" content="">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1 id="stylus教程4">stylus教程4</h1>
+
+<h2 id="混合">混合</h2>
+
+<p>在stylus中，混合和函数的定义方式其实完全相同，但是它们通过不同的方式来使用。</p>
+
+<p>比如下面这个例子，我们定义了一个<code class="highlighter-rouge">border-radius(n)</code>的函数，但是被当做一个混合来调用，因为它并没有被当作一个表达式，而是仅仅将属性复制进去。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>border-radius(n)
+  -webkit-border-radius n
+  -moz-border-radius n
+  border-radius n
+
+form input[type=button]
+  border-radius(5px)
+</code></pre></div>
+
+<p>编译后：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>form input[type=button] {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+</code></pre></div>
+
+<p>别忘记stylus追求极致简单的目标，当调用混合的时候，参数的括号完全可以省略！</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>border-radius(n)
+  -webkit-border-radius n
+  -moz-border-radius n
+  border-radius n
+
+form input[type=button]
+  border-radius 5px
+</code></pre></div>
+
+<p>更进一步，我们可以利用局部变量<code class="highlighter-rouge">arguments</code>,同时也支持了可变参数的传值。</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>border-radius()
+  -webkit-border-radius arguments
+  -moz-border-radius arguments
+  border-radius arguments
+</code></pre></div>
+
+<p>另外一种常用混合的情况是支持不同的浏览器特性：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>support-for-ie ?= true
+
+opacity(n)
+  opacity n
+  if support-for-ie
+    filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
+
+#logo
+  &amp;:hover
+    opacity 0.5
+</code></pre></div>
+
+<p>编译为：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>#logo:hover {
+  opacity: 0.5;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+}
+</code></pre></div>
+
+<h3 id="引用父选择器">引用父选择器</h3>
+
+<p>和less和sass一样，stylus中使用<code class="highlighter-rouge">&amp;</code>符号来引用父选择器。</p>
+
+<h3 id="在混合中使用混合">在混合中使用混合</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>inline-list()
+   li
+     display inline
+
+ comma-list()
+   inline-list()
+   li
+     &amp;:after
+       content ', '
+     &amp;:last-child:after
+       content ''
+
+ ul
+   comma-list()
+</code></pre></div>
+
+<p>编译为：</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ul li:after {
+  content: ", ";
+}
+ul li:last-child:after {
+  content: "";
+}
+ul li {
+  display: inline;
+}
+</code></pre></div>
+
+<p>全文完</p>
+
+      </section>
+    </div>
+  </body>
+</html>
